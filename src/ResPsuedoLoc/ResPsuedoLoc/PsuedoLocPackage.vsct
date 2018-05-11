@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary
+        format that VisualStudio will consume) has the ability to run a preprocessor
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so
+        it is possible to define includes and macros with the same syntax used
+        in C++ files. Using this ability of the compiler here, we include some files
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h"/>
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h"/>
+
+  <!--The Commands section is where commands, menus, and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="guidPsuedoLocPackage">
+    <Groups>
+      <Group guid="guidPsuedoLocPackageCmdSet" id="SolutionContextGroup" priority="0x0600" />
+      <Group guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" priority="0x0600" />
+    </Groups>
+
+    <Menus>
+      <Menu guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenu" type="Context" priority="0x0100">
+        <Strings>
+          <CommandName>Psuedo Localize</CommandName>
+          <ButtonText>Psuedo Localize</ButtonText>
+          <MenuText>Psuedo Localize</MenuText>
+          <ToolTipText>Psuedo Localize</ToolTipText>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <Buttons>
+      <Button guid="guidPsuedoLocPackageCmdSet" id="SurroundCommandId" priority="0x0100" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Invoke SurroundCommand</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\PsuedoLocCommands.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+    </Bitmaps>
+  </Commands>
+
+  <CommandPlacements>
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="SolutionContextGroup" priority="0x0200">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenu" priority="0x0100">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" priority="0x0100">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenu" />
+    </CommandPlacement>
+    
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="SurroundCommandId" priority="0x0100">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
+    </CommandPlacement>
+  </CommandPlacements>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidPsuedoLocPackage" value="{13097f34-2ebd-4ccc-bb05-bafad28a5c3b}" />
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidPsuedoLocPackageCmdSet" value="{ea9955ee-bcbf-4e98-a1a2-3ff72fe7746a}">
+      <IDSymbol value="0x0100" name="SolutionContextGroup" />
+      <IDSymbol value="0x0200" name="SolutionContextMenu" />
+      <IDSymbol value="0x0300" name="SolutionContextMenuGroup" />
+
+      <IDSymbol name="SurroundCommandId" value="4128" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{cd32c8e2-45ed-459e-8bda-a0c4232d305d}" >
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
