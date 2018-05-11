@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Xml;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -123,6 +124,23 @@ namespace ResPsuedoLoc.Commands
                     Marshal.Release(hierarchyPtr);
                 }
             }
+        }
+
+        public void ForEachStringResourceEntry(Func<string, string> doThis)
+        {
+            var xdoc = new XmlDocument();
+            xdoc.Load(this.SelectedFileName);
+
+            foreach (XmlElement element in xdoc.GetElementsByTagName("data"))
+            {
+                System.Diagnostics.Debug.WriteLine(element);
+
+                var valueElement = element.GetElementsByTagName("value").Item(0);
+
+                valueElement.InnerText = doThis(valueElement.InnerText);
+            }
+
+            xdoc.Save(this.SelectedFileName);
         }
     }
 }

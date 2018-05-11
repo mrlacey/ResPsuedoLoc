@@ -1,12 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
-using System.Globalization;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Xml;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
@@ -46,37 +40,19 @@ namespace ResPsuedoLoc.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            //  var fileContents = File.ReadAllText(this.SelectedFileName);
-
-            var xdoc = new XmlDocument();
-            xdoc.Load(this.SelectedFileName);
-
             const string surroundStart = "[! ";
             const string surroundEnd = " !]";
 
-            foreach (XmlElement element in xdoc.GetElementsByTagName("data"))
-            {
-                System.Diagnostics.Debug.WriteLine(element);
-
-                var valueElement = element.GetElementsByTagName("value").Item(0);
-
-                var currentText = valueElement.InnerText;
-
-                string newText;
-
-                if (currentText.StartsWith(surroundStart) && currentText.EndsWith(surroundEnd))
+            ForEachStringResourceEntry((str) => {
+                if (str.StartsWith(surroundStart) && str.EndsWith(surroundEnd))
                 {
-                    newText = currentText.TrimPrefix(surroundStart).TrimSuffix(surroundEnd);
+                    return str.TrimPrefix(surroundStart).TrimSuffix(surroundEnd);
                 }
                 else
                 {
-                    newText = $"{surroundStart}{currentText}{surroundEnd}";
+                    return $"{surroundStart}{str}{surroundEnd}";
                 }
-
-                valueElement.InnerText = newText;
-            }
-
-            xdoc.Save(this.SelectedFileName);
+            });
         }
     }
 }

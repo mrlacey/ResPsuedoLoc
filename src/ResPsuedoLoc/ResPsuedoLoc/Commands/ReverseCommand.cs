@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Globalization;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Linq;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
@@ -44,17 +42,24 @@ namespace ResPsuedoLoc.Commands
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "ReverseCommand";
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.package,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            ForEachStringResourceEntry((str) => {
+                return ReverseGraphemeClusters(str);
+            });
+        }
+
+        // https://stackoverflow.com/a/15111719/1755
+        private static IEnumerable<string> GraphemeClusters(string s)
+        {
+            var enumerator = StringInfo.GetTextElementEnumerator(s);
+            while (enumerator.MoveNext())
+            {
+                yield return (string)enumerator.Current;
+            }
+        }
+        private static string ReverseGraphemeClusters(string s)
+        {
+            return string.Join("", GraphemeClusters(s).Reverse().ToArray());
         }
     }
 }
