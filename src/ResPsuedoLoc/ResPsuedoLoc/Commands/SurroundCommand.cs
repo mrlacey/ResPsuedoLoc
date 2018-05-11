@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
@@ -44,17 +45,38 @@ namespace ResPsuedoLoc.Commands
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "SurroundCommand";
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.package,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            //  var fileContents = File.ReadAllText(this.SelectedFileName);
+
+            var xdoc = new XmlDocument();
+            xdoc.Load(this.SelectedFileName);
+
+            const string surroundStart = "[! ";
+            const string surroundEnd = " !]";
+
+            foreach (XmlElement element in xdoc.GetElementsByTagName("data"))
+            {
+                System.Diagnostics.Debug.WriteLine(element);
+
+                var valueElement = element.GetElementsByTagName("value").Item(0);
+
+                var currentText = valueElement.InnerText;
+
+                string newText;
+
+                if (currentText.StartsWith(surroundStart) && currentText.EndsWith(surroundEnd))
+                {
+                    newText = currentText.TrimPrefix(surroundStart).TrimSuffix(surroundEnd);
+                }
+                else
+                {
+                    newText = $"{surroundStart}{currentText}{surroundEnd}";
+                }
+
+                valueElement.InnerText = newText;
+            }
+
+            xdoc.Save(this.SelectedFileName);
         }
     }
 }
