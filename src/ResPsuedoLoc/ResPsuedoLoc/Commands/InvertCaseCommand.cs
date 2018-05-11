@@ -1,11 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
-using System.Globalization;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Text;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
@@ -44,17 +40,31 @@ namespace ResPsuedoLoc.Commands
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "InvertCaseCommand";
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.package,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            ForEachStringResourceEntry((str) => {
+                var result = new StringBuilder(str.Length);
+
+                foreach (var character in str)
+                {
+                    if (char.IsLetter(character))
+                    {
+                        if (char.IsLower(character))
+                        {
+                            result.Append(char.ToUpperInvariant(character));
+                        }
+                        else
+                        {
+                            result.Append(char.ToLowerInvariant(character));
+                        }
+                    }
+                    else
+                    {
+                        result.Append(character);
+                    }
+                }
+
+                return result.ToString();
+            });
         }
     }
 }
