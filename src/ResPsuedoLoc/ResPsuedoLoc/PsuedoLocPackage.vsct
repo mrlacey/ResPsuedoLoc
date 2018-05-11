@@ -45,7 +45,7 @@
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>Invoke SurroundCommand</ButtonText>
+          <ButtonText>[! Surround !]</ButtonText>
         </Strings>
       </Button>
 
@@ -54,7 +54,34 @@
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>Invoke ReverseCommand</ButtonText>
+          <ButtonText>esreveR</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidPsuedoLocPackageCmdSet" id="PaddingCommandId" priority="0x0200" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>P-a-d-d-i-n-g</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidPsuedoLocPackageCmdSet" id="InvertCaseCommandId" priority="0x0200" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>iNVERT cASE</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidPsuedoLocPackageCmdSet" id="DiacriticsCommandId" priority="0x0200" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Diacritics</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -84,6 +111,18 @@
     <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="ReverseCommandId" priority="0x0200">
       <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
     </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="PaddingCommandId" priority="0x0200">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="InvertCaseCommandId" priority="0x0200">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="DiacriticsCommandId" priority="0x0200">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
+    </CommandPlacement>
   </CommandPlacements>
 
   <Symbols>
@@ -96,6 +135,9 @@
       <IDSymbol value="0x0200" name="SolutionContextMenu" />
       <IDSymbol value="0x0300" name="SolutionContextMenuGroup" />
 
+      <IDSymbol name="DiacriticsCommandId" value="4124" />
+      <IDSymbol name="InvertCaseCommandId" value="4125" />
+      <IDSymbol name="PaddingCommandId" value="4126" />
       <IDSymbol name="ReverseCommandId" value="4127" />
       <IDSymbol name="SurroundCommandId" value="4128" />
     </GuidSymbol>

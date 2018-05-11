@@ -68,6 +68,7 @@ namespace ResPsuedoLoc
             await ReverseCommand.InitializeAsync(this);
             await PaddingCommand.InitializeAsync(this);
             await InvertCaseCommand.InitializeAsync(this);
+            await DiacriticsCommand.InitializeAsync(this);
         }
 
         #endregion
