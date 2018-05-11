@@ -55,6 +55,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Commands\ReverseCommand.cs" />
+    <Compile Include="Commands\InvertCaseCommand.cs" />
+    <Compile Include="Commands\PaddingCommand.cs" />
+    <Compile Include="Commands\DiacriticsCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\SurroundCommand.cs" />
     <Compile Include="PsuedoLocPackage.cs" />

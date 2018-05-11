@@ -48,6 +48,15 @@
           <ButtonText>Invoke SurroundCommand</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="guidPsuedoLocPackageCmdSet" id="ReverseCommandId" priority="0x0200" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Invoke ReverseCommand</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
 
     <Bitmaps>
@@ -67,8 +76,12 @@
     <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" priority="0x0100">
       <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenu" />
     </CommandPlacement>
-    
+
     <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="SurroundCommandId" priority="0x0100">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="ReverseCommandId" priority="0x0200">
       <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
     </CommandPlacement>
   </CommandPlacements>
@@ -83,6 +96,7 @@
       <IDSymbol value="0x0200" name="SolutionContextMenu" />
       <IDSymbol value="0x0300" name="SolutionContextMenuGroup" />
 
+      <IDSymbol name="ReverseCommandId" value="4127" />
       <IDSymbol name="SurroundCommandId" value="4128" />
     </GuidSymbol>
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
@@ -22,6 +23,40 @@ namespace ResPsuedoLoc.Commands
             get
             {
                 return this.package;
+            }
+        }
+
+        protected void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender is OleMenuCommand menuCmd)
+                {
+                    menuCmd.Visible = menuCmd.Enabled = false;
+
+                    if (!this.IsSingleProjectItemSelection(out var hierarchy, out var itemid))
+                    {
+                        this.SelectedFileName = null;
+                        return;
+                    }
+
+                    ((IVsProject)hierarchy).GetMkDocument(itemid, out var itemFullPath);
+                    var transformFileInfo = new FileInfo(itemFullPath);
+
+                    // Save the name of the selected file so we whave it when the command is executed
+                    this.SelectedFileName = transformFileInfo.FullName;
+
+                    if (transformFileInfo.Name.EndsWith(".resw")
+                     || transformFileInfo.Name.EndsWith(".resx"))
+                    {
+                        menuCmd.Visible = menuCmd.Enabled = true;
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                //this.Logger.RecordException(exc);
+                throw;
             }
         }
 
@@ -89,6 +124,5 @@ namespace ResPsuedoLoc.Commands
                 }
             }
         }
-
     }
 }

@@ -65,6 +65,9 @@ namespace ResPsuedoLoc
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await SurroundCommand.InitializeAsync(this);
+            await ReverseCommand.InitializeAsync(this);
+            await PaddingCommand.InitializeAsync(this);
+            await InvertCaseCommand.InitializeAsync(this);
         }
 
         #endregion

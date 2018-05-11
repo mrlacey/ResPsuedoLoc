@@ -10,11 +10,11 @@ using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
 {
-    internal sealed class SurroundCommand : BaseCommand
+    internal sealed class ReverseCommand : BaseCommand
     {
-        public const int CommandId = 4128;
+        public const int CommandId = 4127;
 
-        private SurroundCommand(AsyncPackage package, OleMenuCommandService commandService)
+        private ReverseCommand(AsyncPackage package, OleMenuCommandService commandService)
             : base(package)
         {
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
@@ -25,7 +25,7 @@ namespace ResPsuedoLoc.Commands
             commandService.AddCommand(menuItem);
         }
 
-        public static SurroundCommand Instance
+        public static ReverseCommand Instance
         {
             get;
             private set;
@@ -38,14 +38,14 @@ namespace ResPsuedoLoc.Commands
             ThreadHelper.ThrowIfNotOnUIThread();
 
             OleMenuCommandService commandService = await package.GetServiceAsync((typeof(IMenuCommandService))) as OleMenuCommandService;
-            Instance = new SurroundCommand(package, commandService);
+            Instance = new ReverseCommand(package, commandService);
         }
 
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "SurroundCommand";
+            string title = "ReverseCommand";
 
             // Show a message box to prove we were here
             VsShellUtilities.ShowMessageBox(
