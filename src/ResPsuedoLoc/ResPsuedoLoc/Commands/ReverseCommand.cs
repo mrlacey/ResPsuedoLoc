@@ -8,7 +8,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
 {
-    internal sealed class ReverseCommand : BaseCommand
+    public sealed class ReverseCommand : BaseCommand
     {
         public const int CommandId = 4127;
 
@@ -43,9 +43,12 @@ namespace ResPsuedoLoc.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            ForEachStringResourceEntry((str) => {
-                return ReverseGraphemeClusters(str);
-            });
+            ForEachStringResourceEntry(ReverseLogic);
+        }
+
+        public static string ReverseLogic(string input)
+        {
+            return ReverseGraphemeClusters(input);
         }
 
         // https://stackoverflow.com/a/15111719/1755
@@ -57,6 +60,7 @@ namespace ResPsuedoLoc.Commands
                 yield return (string)enumerator.Current;
             }
         }
+
         private static string ReverseGraphemeClusters(string s)
         {
             return string.Join("", GraphemeClusters(s).Reverse().ToArray());

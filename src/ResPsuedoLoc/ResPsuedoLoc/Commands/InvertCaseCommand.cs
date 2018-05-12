@@ -6,7 +6,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
 {
-    internal sealed class InvertCaseCommand : BaseCommand
+    public sealed class InvertCaseCommand : BaseCommand
     {
         public const int CommandId = 4125;
 
@@ -41,30 +41,33 @@ namespace ResPsuedoLoc.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            ForEachStringResourceEntry((str) => {
-                var result = new StringBuilder(str.Length);
+            ForEachStringResourceEntry(InvertCaseLogic);
+        }
 
-                foreach (var character in str)
+        public static string InvertCaseLogic(string input)
+        {
+            var result = new StringBuilder(input.Length);
+
+            foreach (var character in input)
+            {
+                if (char.IsLetter(character))
                 {
-                    if (char.IsLetter(character))
+                    if (char.IsLower(character))
                     {
-                        if (char.IsLower(character))
-                        {
-                            result.Append(char.ToUpperInvariant(character));
-                        }
-                        else
-                        {
-                            result.Append(char.ToLowerInvariant(character));
-                        }
+                        result.Append(char.ToUpperInvariant(character));
                     }
                     else
                     {
-                        result.Append(character);
+                        result.Append(char.ToLowerInvariant(character));
                     }
                 }
+                else
+                {
+                    result.Append(character);
+                }
+            }
 
-                return result.ToString();
-            });
+            return result.ToString();
         }
     }
 }

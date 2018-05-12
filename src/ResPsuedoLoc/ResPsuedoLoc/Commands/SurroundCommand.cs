@@ -5,7 +5,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
 {
-    internal sealed class SurroundCommand : BaseCommand
+    public sealed class SurroundCommand : BaseCommand
     {
         public const int CommandId = 4128;
 
@@ -40,19 +40,22 @@ namespace ResPsuedoLoc.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
+            ForEachStringResourceEntry(SurroundLogic);
+        }
+
+        public static string SurroundLogic(string input)
+        {
             const string surroundStart = "[! ";
             const string surroundEnd = " !]";
 
-            ForEachStringResourceEntry((str) => {
-                if (str.StartsWith(surroundStart) && str.EndsWith(surroundEnd))
-                {
-                    return str.TrimPrefix(surroundStart).TrimSuffix(surroundEnd);
-                }
-                else
-                {
-                    return $"{surroundStart}{str}{surroundEnd}";
-                }
-            });
+            if (input.StartsWith(surroundStart) && input.EndsWith(surroundEnd))
+            {
+                return input.TrimPrefix(surroundStart).TrimSuffix(surroundEnd);
+            }
+            else
+            {
+                return $"{surroundStart}{input}{surroundEnd}";
+            }
         }
     }
 }

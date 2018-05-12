@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace ResPsuedoLoc.Commands
 {
-    internal class BaseCommand
+    public class BaseCommand
     {
         protected readonly AsyncPackage package;
 
