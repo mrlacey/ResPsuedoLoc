@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Linq;
+using System.Text;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
 {
-    internal sealed class DiacriticsCommand : BaseCommand
+    public sealed class DiacriticsCommand : BaseCommand
     {
         public const int CommandId = 4124;
 
@@ -40,10 +42,56 @@ namespace ResPsuedoLoc.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            ForEachStringResourceEntry((str) => {
-                // TODO: implement toggling the inclusion of diacritics
-                return str;
-            });
+            ForEachStringResourceEntry(DiacriticsLogic);
+        }
+
+        public static string DiacriticsLogic(string input)
+        {
+            var letters = input.GetGraphemeClusters().ToList();
+
+            var result = new StringBuilder();
+
+            // umlaut, equals, breve, bridge, ring, circumflex, grave, acute, hook
+            var topOptions = new[] { '\u0308', '\u033F', '\u0306', '\u0346', '\u030A', '\u0302', '\u0300', '\u0301', '\u0309' };
+            var bottomOptions = new[] { '\u0324', '\u0347', '\u032E', '\u033A', '\u0325', '\u032D', '\u0316', '\u0317', '\u0321' };
+
+            var optionsIndex = letters.Count % topOptions.Length;
+
+            if (letters.Count > 0)
+            {
+                var adding = true;
+
+                if (letters[0].Length > 2
+                 && letters[0][letters[0].Length - 2] == topOptions[optionsIndex]
+                 && letters[0][letters[0].Length - 1] == bottomOptions[optionsIndex])
+                {
+                    adding = false;
+                }
+
+                foreach (var letter in letters)
+                {
+                    // It should never be null, but want to check for whitespace
+                    if (string.IsNullOrWhiteSpace(letter))
+                    {
+                        result.Append(letter);
+                    }
+                    else
+                    {
+                        if (adding)
+                        {
+                            result.Append(letter);
+                            result.Append(topOptions[optionsIndex]);
+                            result.Append(bottomOptions[optionsIndex]);
+                        }
+                        else
+                        {
+                            result.Append(letter.Substring(0, letter.Length - 2));
+                        }
+                    }
+                }
+            }
+
+            return result.ToString();
         }
     }
 }
