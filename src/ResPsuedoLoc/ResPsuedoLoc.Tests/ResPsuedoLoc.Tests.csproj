@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InvertCaseTests.cs" />
+    <Compile Include="PaddingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReverseTests.cs" />
     <Compile Include="SurroundTests.cs" />

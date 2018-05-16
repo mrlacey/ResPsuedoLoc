@@ -14,18 +14,17 @@ using Microsoft.Win32;
 using ResPsuedoLoc.Commands;
 using Task = System.Threading.Tasks.Task;
 
-
 // TODO: Add commands for all toggle options
 ////> All XXXs
 ////> ALL UPPERCASE
-////> L337
+////> L337???
 ////> AlTeRnAtE CaSe
+////> DDoouubbllee
 ////> [! Surround !] (toggle)
 ////> esreveR(toggle)
 ////> iNVERT cASE(toggle)
 ////> Add diacritics(toggle?)
 ////> Add P-a-d-d-i-n-g(toggle)
-
 
 namespace ResPsuedoLoc
 {

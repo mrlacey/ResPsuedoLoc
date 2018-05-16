@@ -6,7 +6,6 @@ namespace ResPsuedoLoc.Tests
     [TestClass]
     public class ReverseTests
     {
-
         [TestMethod]
         public void SimpleAscii()
         {

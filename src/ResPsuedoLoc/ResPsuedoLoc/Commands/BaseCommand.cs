@@ -54,7 +54,7 @@ namespace ResPsuedoLoc.Commands
                     }
                 }
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 //this.Logger.RecordException(exc);
                 throw;

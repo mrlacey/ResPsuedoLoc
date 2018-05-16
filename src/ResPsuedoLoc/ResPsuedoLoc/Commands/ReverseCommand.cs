@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Design;
-using System.Globalization;
-using System.Linq;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
@@ -48,22 +45,7 @@ namespace ResPsuedoLoc.Commands
 
         public static string ReverseLogic(string input)
         {
-            return ReverseGraphemeClusters(input);
-        }
-
-        // https://stackoverflow.com/a/15111719/1755
-        private static IEnumerable<string> GraphemeClusters(string s)
-        {
-            var enumerator = StringInfo.GetTextElementEnumerator(s);
-            while (enumerator.MoveNext())
-            {
-                yield return (string)enumerator.Current;
-            }
-        }
-
-        private static string ReverseGraphemeClusters(string s)
-        {
-            return string.Join("", GraphemeClusters(s).Reverse().ToArray());
+            return input.ReverseGraphemeClusters();
         }
     }
 }
