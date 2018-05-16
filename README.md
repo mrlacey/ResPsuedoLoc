@@ -6,5 +6,6 @@ If you don't speak another language it can be tricky to verify that all UI strin
 
 It works with RESX and RESW files. Right click on the resource file and select the option you want. All the entries in the file will then be modified accordingly.
 
+![Example of context menu](./assets/rpl-contextmenu.png)
 
-
+Options can be combined and toggled by repeating the action.
