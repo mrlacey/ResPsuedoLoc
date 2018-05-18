@@ -45,7 +45,23 @@ namespace ResPsuedoLoc.Commands
 
         public static string ReverseLogic(string input)
         {
-            return input.ReverseGraphemeClusters();
+            var surrounded = SurroundCommand.IsSurrounded(input);
+
+            var stringToReverse = input;
+
+            if (surrounded)
+            {
+                stringToReverse = SurroundCommand.RemoveSurrounds(input);
+            }
+
+            var result = stringToReverse.ReverseGraphemeClusters();
+
+            if (surrounded)
+            {
+                result = SurroundCommand.SurroundLogic(result);
+            }
+
+            return result;
         }
     }
 }

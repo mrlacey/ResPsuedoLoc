@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CombinationTests.cs" />
     <Compile Include="DiacriticsTests.cs" />
     <Compile Include="InvertCaseTests.cs" />
     <Compile Include="PaddingTests.cs" />

@@ -8,6 +8,10 @@ namespace ResPsuedoLoc.Commands
     public sealed class SurroundCommand : BaseCommand
     {
         public const int CommandId = 4128;
+        
+        private const string surroundStart = "[! ";
+        private const string surroundEnd = " !]";
+
 
         private SurroundCommand(AsyncPackage package, OleMenuCommandService commandService)
             : base(package)
@@ -45,17 +49,24 @@ namespace ResPsuedoLoc.Commands
 
         public static string SurroundLogic(string input)
         {
-            const string surroundStart = "[! ";
-            const string surroundEnd = " !]";
-
-            if (input.StartsWith(surroundStart) && input.EndsWith(surroundEnd))
+            if (IsSurrounded(input))
             {
-                return input.TrimPrefix(surroundStart).TrimSuffix(surroundEnd);
+                return RemoveSurrounds(input);
             }
             else
             {
                 return $"{surroundStart}{input}{surroundEnd}";
             }
+        }
+
+        internal static string RemoveSurrounds(string input)
+        {
+            return input.TrimPrefix(surroundStart).TrimSuffix(surroundEnd);
+        }
+
+        internal static bool IsSurrounded(string input)
+        {
+            return input.StartsWith(surroundStart) && input.EndsWith(surroundEnd);
         }
     }
 }
