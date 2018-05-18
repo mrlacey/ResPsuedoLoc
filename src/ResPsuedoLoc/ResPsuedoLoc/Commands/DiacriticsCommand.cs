@@ -47,7 +47,16 @@ namespace ResPsuedoLoc.Commands
 
         public static string DiacriticsLogic(string input)
         {
-            var letters = input.GetGraphemeClusters().ToList();
+            var surrounded = SurroundCommand.IsSurrounded(input);
+
+            var stringToReverse = input;
+
+            if (surrounded)
+            {
+                stringToReverse = SurroundCommand.RemoveSurrounds(input);
+            }
+
+            var letters = stringToReverse.GetGraphemeClusters().ToList();
 
             var result = new StringBuilder();
 
@@ -71,7 +80,7 @@ namespace ResPsuedoLoc.Commands
                 foreach (var letter in letters)
                 {
                     // It should never be null, but want to check for whitespace
-                    if (string.IsNullOrWhiteSpace(letter))
+                    if (string.IsNullOrWhiteSpace(letter) || letter == PaddingCommand.SeparatorStr)
                     {
                         result.Append(letter);
                     }
@@ -91,7 +100,14 @@ namespace ResPsuedoLoc.Commands
                 }
             }
 
-            return result.ToString();
+            if (surrounded)
+            {
+                return SurroundCommand.SurroundLogic(result.ToString());
+            }
+            else
+            {
+                return result.ToString();
+            }
         }
     }
 }

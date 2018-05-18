@@ -10,6 +10,8 @@ namespace ResPsuedoLoc.Commands
     public sealed class PaddingCommand : BaseCommand
     {
         public const int CommandId = 4126;
+        private static char separator = '-';
+        public static string SeparatorStr = separator.ToString();
 
         private PaddingCommand(AsyncPackage package, OleMenuCommandService commandService)
             : base(package)
@@ -47,9 +49,6 @@ namespace ResPsuedoLoc.Commands
 
         public static string PaddingLogic(string input)
         {
-            const char separator = '-';
-            string separatorStr = separator.ToString();
-
             if (input.Length < 2)
             {
                 return input;
@@ -58,7 +57,7 @@ namespace ResPsuedoLoc.Commands
             {
                 if (char.IsLetter(input[0]) && char.IsLetter(input[1]))
                 {
-                    return input.Insert(1, separatorStr);
+                    return input.Insert(1, SeparatorStr);
                 }
                 else
                 {
@@ -116,9 +115,9 @@ namespace ResPsuedoLoc.Commands
                         {
                             var tempWord = word.Replace("---", " ");
 
-                            tempWord = tempWord.Replace(separatorStr, string.Empty);
+                            tempWord = tempWord.Replace(SeparatorStr, string.Empty);
 
-                            result.Append(tempWord.Replace(" ", separatorStr));
+                            result.Append(tempWord.Replace(" ", SeparatorStr));
                         }
 
                         result.Append(' ');
