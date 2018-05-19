@@ -41,7 +41,7 @@
 
     <Buttons>
       <Button guid="guidPsuedoLocPackageCmdSet" id="SurroundCommandId" priority="0x0100" type="Button">
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="guidImages" id="bmpPic5" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
@@ -50,7 +50,7 @@
       </Button>
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="ReverseCommandId" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="guidImages" id="bmpPic4" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
@@ -59,7 +59,7 @@
       </Button>
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="PaddingCommandId" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="guidImages" id="bmpPic3" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
@@ -68,7 +68,7 @@
       </Button>
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="InvertCaseCommandId" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="guidImages" id="bmpPic2" />
         <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
@@ -87,7 +87,7 @@
     </Buttons>
 
     <Bitmaps>
-      <Bitmap guid="guidImages" href="Resources\PsuedoLocCommands.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+      <Bitmap guid="guidImages" href="Resources\PsuedoLocCommands.png" usedList="bmpPic1, bmpPic2, bmpPic3, bmpPic4, bmpPic5, bmpPicStrikethrough"/>
     </Bitmaps>
   </Commands>
 
@@ -145,9 +145,9 @@
     <GuidSymbol name="guidImages" value="{cd32c8e2-45ed-459e-8bda-a0c4232d305d}" >
       <IDSymbol name="bmpPic1" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
-      <IDSymbol name="bmpPicSearch" value="3" />
-      <IDSymbol name="bmpPicX" value="4" />
-      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPic3" value="3" />
+      <IDSymbol name="bmpPic4" value="4" />
+      <IDSymbol name="bmpPic5" value="5" />
       <IDSymbol name="bmpPicStrikethrough" value="6" />
     </GuidSymbol>
   </Symbols>
