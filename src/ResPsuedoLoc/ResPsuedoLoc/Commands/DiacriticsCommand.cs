@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="DiacriticsCommand.cs" company="Matt Lacey Ltd.">
+// Copyright (c) Matt Lacey Ltd. All rights reserved.
+// </copyright>
+
+using System;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
@@ -34,15 +38,8 @@ namespace ResPsuedoLoc.Commands
             // the UI thread.
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            OleMenuCommandService commandService = await package.GetServiceAsync((typeof(IMenuCommandService))) as OleMenuCommandService;
+            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
             Instance = new DiacriticsCommand(package, commandService);
-        }
-
-        private void Execute(object sender, EventArgs e)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            ForEachStringResourceEntry(DiacriticsLogic);
         }
 
         public static string DiacriticsLogic(string input)
@@ -108,6 +105,13 @@ namespace ResPsuedoLoc.Commands
             {
                 return result.ToString();
             }
+        }
+
+        private void Execute(object sender, EventArgs e)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            this.ForEachStringResourceEntry(DiacriticsLogic);
         }
     }
 }

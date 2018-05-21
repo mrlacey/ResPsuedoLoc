@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="InvertCaseTests.cs" company="Matt Lacey Ltd.">
+// Copyright (c) Matt Lacey Ltd. All rights reserved.
+// </copyright>
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ResPsuedoLoc.Commands;
 

@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="InvertCaseCommand.cs" company="Matt Lacey Ltd.">
+// Copyright (c) Matt Lacey Ltd. All rights reserved.
+// </copyright>
+
+using System;
 using System.ComponentModel.Design;
 using System.Text;
 using Microsoft.VisualStudio.Shell;
@@ -33,15 +37,8 @@ namespace ResPsuedoLoc.Commands
             // the UI thread.
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            OleMenuCommandService commandService = await package.GetServiceAsync((typeof(IMenuCommandService))) as OleMenuCommandService;
+            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
             Instance = new InvertCaseCommand(package, commandService);
-        }
-
-        private void Execute(object sender, EventArgs e)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            ForEachStringResourceEntry(InvertCaseLogic);
         }
 
         public static string InvertCaseLogic(string input)
@@ -68,6 +65,13 @@ namespace ResPsuedoLoc.Commands
             }
 
             return result.ToString();
+        }
+
+        private void Execute(object sender, EventArgs e)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            this.ForEachStringResourceEntry(InvertCaseLogic);
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="PaddingCommand.cs" company="Matt Lacey Ltd.">
+// Copyright (c) Matt Lacey Ltd. All rights reserved.
+// </copyright>
+
+using System;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
@@ -10,8 +14,10 @@ namespace ResPsuedoLoc.Commands
     public sealed class PaddingCommand : BaseCommand
     {
         public const int CommandId = 4126;
-        private static char separator = '-';
-        public static string SeparatorStr = separator.ToString();
+#pragma warning disable SA1401 // Fields must be private
+        public static char Separator = '-';
+        public static string SeparatorStr = Separator.ToString();
+#pragma warning restore SA1401 // Fields must be private
 
         private PaddingCommand(AsyncPackage package, OleMenuCommandService commandService)
             : base(package)
@@ -36,15 +42,8 @@ namespace ResPsuedoLoc.Commands
             // the UI thread.
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            OleMenuCommandService commandService = await package.GetServiceAsync((typeof(IMenuCommandService))) as OleMenuCommandService;
+            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
             Instance = new PaddingCommand(package, commandService);
-        }
-
-        private void Execute(object sender, EventArgs e)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            ForEachStringResourceEntry(PaddingLogic);
         }
 
         public static string PaddingLogic(string input)
@@ -69,7 +68,7 @@ namespace ResPsuedoLoc.Commands
                 var result = new StringBuilder();
 
                 var countOfLetters = input.Count(i => char.IsLetter(i));
-                var countOfSeparators = input.Count(i => i == separator);
+                var countOfSeparators = input.Count(i => i == Separator);
 
                 var adding = countOfSeparators < (countOfLetters / 2);
 
@@ -82,7 +81,7 @@ namespace ResPsuedoLoc.Commands
                     if (char.IsLetter(input[0]) && char.IsLetter(input[1]))
                     {
                         result.Append(input[0]);
-                        result.Append(separator);
+                        result.Append(Separator);
                         result.Append(input[1]);
                     }
                     else
@@ -106,10 +105,10 @@ namespace ResPsuedoLoc.Commands
 
                             foreach (var character in word.GetGraphemeClusters())
                             {
-                                paddedWord.Append($"{character}{separator}");
+                                paddedWord.Append($"{character}{Separator}");
                             }
 
-                            result.Append(paddedWord.ToString().TrimEnd(separator));
+                            result.Append(paddedWord.ToString().TrimEnd(Separator));
                         }
                         else
                         {
@@ -123,11 +122,18 @@ namespace ResPsuedoLoc.Commands
                         result.Append(' ');
                     }
 
-                    result.Remove(result.Length -1, 1);
+                    result.Remove(result.Length - 1, 1);
                 }
 
                 return result.ToString();
             }
+        }
+
+        private void Execute(object sender, EventArgs e)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            this.ForEachStringResourceEntry(PaddingLogic);
         }
     }
 }

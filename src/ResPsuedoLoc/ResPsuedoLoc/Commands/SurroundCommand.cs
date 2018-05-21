@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="SurroundCommand.cs" company="Matt Lacey Ltd.">
+// Copyright (c) Matt Lacey Ltd. All rights reserved.
+// </copyright>
+
+using System;
 using System.ComponentModel.Design;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
@@ -8,10 +12,9 @@ namespace ResPsuedoLoc.Commands
     public sealed class SurroundCommand : BaseCommand
     {
         public const int CommandId = 4128;
-        
-        private const string surroundStart = "[! ";
-        private const string surroundEnd = " !]";
 
+        private const string SurroundStart = "[! ";
+        private const string SurroundEnd = " !]";
 
         private SurroundCommand(AsyncPackage package, OleMenuCommandService commandService)
             : base(package)
@@ -36,15 +39,8 @@ namespace ResPsuedoLoc.Commands
             // the UI thread.
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            OleMenuCommandService commandService = await package.GetServiceAsync((typeof(IMenuCommandService))) as OleMenuCommandService;
+            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
             Instance = new SurroundCommand(package, commandService);
-        }
-
-        private void Execute(object sender, EventArgs e)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            ForEachStringResourceEntry(SurroundLogic);
         }
 
         public static string SurroundLogic(string input)
@@ -55,18 +51,25 @@ namespace ResPsuedoLoc.Commands
             }
             else
             {
-                return $"{surroundStart}{input}{surroundEnd}";
+                return $"{SurroundStart}{input}{SurroundEnd}";
             }
         }
 
         internal static string RemoveSurrounds(string input)
         {
-            return input.TrimPrefix(surroundStart).TrimSuffix(surroundEnd);
+            return input.TrimPrefix(SurroundStart).TrimSuffix(SurroundEnd);
         }
 
         internal static bool IsSurrounded(string input)
         {
-            return input.StartsWith(surroundStart) && input.EndsWith(surroundEnd);
+            return input.StartsWith(SurroundStart) && input.EndsWith(SurroundEnd);
+        }
+
+        private void Execute(object sender, EventArgs e)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            this.ForEachStringResourceEntry(SurroundLogic);
         }
     }
 }

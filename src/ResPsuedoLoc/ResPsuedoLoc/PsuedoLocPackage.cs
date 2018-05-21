@@ -1,16 +1,12 @@
-﻿using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
+﻿// <copyright file="PsuedoLocPackage.cs" company="Matt Lacey Ltd.">
+// Copyright (c) Matt Lacey Ltd. All rights reserved.
+// </copyright>
+
+using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
 using ResPsuedoLoc.Commands;
 using Task = System.Threading.Tasks.Task;
 
@@ -37,8 +33,6 @@ namespace ResPsuedoLoc
             // initialization is the Initialize method.
         }
 
-        #region Package Members
-
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
@@ -57,7 +51,5 @@ namespace ResPsuedoLoc
             await InvertCaseCommand.InitializeAsync(this);
             await DiacriticsCommand.InitializeAsync(this);
         }
-
-        #endregion
     }
 }

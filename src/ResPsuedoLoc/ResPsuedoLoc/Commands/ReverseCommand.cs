@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="ReverseCommand.cs" company="Matt Lacey Ltd.">
+// Copyright (c) Matt Lacey Ltd. All rights reserved.
+// </copyright>
+
+using System;
 using System.ComponentModel.Design;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
@@ -32,15 +36,8 @@ namespace ResPsuedoLoc.Commands
             // the UI thread.
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            OleMenuCommandService commandService = await package.GetServiceAsync((typeof(IMenuCommandService))) as OleMenuCommandService;
+            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
             Instance = new ReverseCommand(package, commandService);
-        }
-
-        private void Execute(object sender, EventArgs e)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            ForEachStringResourceEntry(ReverseLogic);
         }
 
         public static string ReverseLogic(string input)
@@ -62,6 +59,13 @@ namespace ResPsuedoLoc.Commands
             }
 
             return result;
+        }
+
+        private void Execute(object sender, EventArgs e)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            this.ForEachStringResourceEntry(ReverseLogic);
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// <copyright file="StringExtentions.cs" company="Matt Lacey Ltd.">
+// Copyright (c) Matt Lacey Ltd. All rights reserved.
+// </copyright>
+
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -18,7 +22,7 @@ namespace ResPsuedoLoc
 
         public static string ReverseGraphemeClusters(this string s)
         {
-            return string.Join("", GetGraphemeClusters(s).Reverse().ToArray());
+            return string.Join(string.Empty, GetGraphemeClusters(s).Reverse().ToArray());
         }
     }
 }
