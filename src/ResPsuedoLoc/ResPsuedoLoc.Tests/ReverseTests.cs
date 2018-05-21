@@ -14,6 +14,28 @@ namespace ResPsuedoLoc.Tests
             Assert.AreEqual("cba", actual);
         }
 
-        // TODO: add tests for strings using combining characters and other character sets
+        [TestMethod]
+        public void WithCombiningCharacters()
+        {
+            var actual = ReverseCommand.ReverseLogic("a\u0346bc");
+
+            Assert.AreEqual("cba\u0346", actual);
+        }
+
+        [TestMethod]
+        public void WithNonAscii()
+        {
+            var actual = ReverseCommand.ReverseLogic("mrläcey");
+
+            Assert.AreEqual("yecälrm", actual);
+        }
+
+        [TestMethod]
+        public void WithCyrillic()
+        {
+            var actual = ReverseCommand.ReverseLogic("матт");
+
+            Assert.AreEqual("ттам", actual);
+        }
     }
 }
