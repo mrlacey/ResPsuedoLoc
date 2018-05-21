@@ -22,6 +22,8 @@ namespace ResPsuedoLoc.Commands
         private PaddingCommand(AsyncPackage package, OleMenuCommandService commandService)
             : base(package)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
             var menuCommandId = new CommandID(PsuedoLocPackage.CommandSet, CommandId);

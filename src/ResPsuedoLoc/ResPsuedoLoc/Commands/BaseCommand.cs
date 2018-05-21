@@ -50,10 +50,12 @@ namespace ResPsuedoLoc.Commands
             xdoc.Save(this.SelectedFileName);
         }
 
-        protected void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
+        protected async void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
         {
             try
             {
+                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
                 if (sender is OleMenuCommand menuCmd)
                 {
                     menuCmd.Visible = menuCmd.Enabled = false;
@@ -86,6 +88,8 @@ namespace ResPsuedoLoc.Commands
 
         protected bool IsSingleProjectItemSelection(out IVsHierarchy hierarchy, out uint itemid)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             hierarchy = null;
             itemid = VSConstants.VSITEMID_NIL;
 
