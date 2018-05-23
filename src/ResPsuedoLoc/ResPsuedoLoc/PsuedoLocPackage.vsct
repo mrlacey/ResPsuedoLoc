@@ -31,10 +31,10 @@
     <Menus>
       <Menu guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenu" type="Context" priority="0x0100">
         <Strings>
-          <CommandName>Psuedo Localize</CommandName>
-          <ButtonText>Psuedo Localize</ButtonText>
-          <MenuText>Psuedo Localize</MenuText>
-          <ToolTipText>Psuedo Localize</ToolTipText>
+          <CommandName>Pseudo Localize</CommandName>
+          <ButtonText>Pseudo Localize</ButtonText>
+          <MenuText>Pseudo Localize</MenuText>
+          <ToolTipText>Pseudo Localize</ToolTipText>
         </Strings>
       </Menu>
     </Menus>
