@@ -42,7 +42,6 @@
     <Buttons>
       <Button guid="guidPsuedoLocPackageCmdSet" id="SurroundCommandId" priority="0x0100" type="Button">
         <Icon guid="guidImages" id="bmpPic5" />
-        <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>[! Surround !]</ButtonText>
@@ -51,7 +50,6 @@
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="ReverseCommandId" priority="0x0200" type="Button">
         <Icon guid="guidImages" id="bmpPic4" />
-        <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>esreveR</ButtonText>
@@ -60,7 +58,6 @@
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="PaddingCommandId" priority="0x0200" type="Button">
         <Icon guid="guidImages" id="bmpPic3" />
-        <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>P-a-d-d-i-n-g</ButtonText>
@@ -69,7 +66,6 @@
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="InvertCaseCommandId" priority="0x0200" type="Button">
         <Icon guid="guidImages" id="bmpPic2" />
-        <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>iNVERT cASE</ButtonText>
@@ -78,7 +74,6 @@
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="DiacriticsCommandId" priority="0x0200" type="Button">
         <Icon guid="guidImages" id="bmpPic1" />
-        <CommandFlag>DefaultInvisible</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Dï̤a͇̿c̥̊r̡̉ï̤ṱ̂i̥̊c̮̆s͇̿</ButtonText>
@@ -127,7 +122,10 @@
 
   <Symbols>
     <!-- This is the package guid. -->
-    <GuidSymbol name="guidPsuedoLocPackage" value="{13097f34-2ebd-4ccc-bb05-bafad28a5c3b}" />
+    <GuidSymbol name="guidPsuedoLocPackage"    value="{13097f34-2ebd-4ccc-bb05-bafad28a5c3b}" />
+
+    <!-- This is used by the ContextMenu file filter -->
+    <GuidSymbol name="UiContextSupportedFiles" value="{c9323aea-d755-4630-bb85-c1938577ce26}" />
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidPsuedoLocPackageCmdSet" value="{ea9955ee-bcbf-4e98-a1a2-3ff72fe7746a}">

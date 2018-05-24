@@ -24,7 +24,6 @@ namespace ResPsuedoLoc.Commands
 
             var menuCommandId = new CommandID(PsuedoLocPackage.CommandSet, CommandId);
             var menuItem = new OleMenuCommand(this.Execute, menuCommandId);
-            menuItem.BeforeQueryStatus += this.MenuItem_BeforeQueryStatus;
             commandService.AddCommand(menuItem);
         }
 

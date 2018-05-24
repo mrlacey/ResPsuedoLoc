@@ -18,10 +18,13 @@ namespace ResPsuedoLoc
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PsuedoLocPackage.PackageGuidString)]
+    [ProvideUIContextRule(UiContextSupportedFiles, name: "Supported Files", expression: "RESX | RESW", termNames: new[] { "resx", "resw" }, termValues: new[] { "HierSingleSelectionName:.resx$", "HierSingleSelectionName:.resw$" })]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class PsuedoLocPackage : AsyncPackage
     {
         public const string PackageGuidString = "13097f34-2ebd-4ccc-bb05-bafad28a5c3b";
+
+        public const string UiContextSupportedFiles = "c9323aea-d755-4630-bb85-c1938577ce26";
 
         public static readonly Guid CommandSet = new Guid("ea9955ee-bcbf-4e98-a1a2-3ff72fe7746a");
 
