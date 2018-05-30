@@ -79,10 +79,18 @@
           <ButtonText>Dï̤a͇̿c̥̊r̡̉ï̤ṱ̂i̥̊c̮̆s͇̿</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="guidPsuedoLocPackageCmdSet" id="DoubleCommandId" priority="0x0200" type="Button">
+        <Icon guid="guidImages" id="bmpPic6" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>DDoouubbllee</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
 
     <Bitmaps>
-      <Bitmap guid="guidImages" href="Resources\PsuedoLocCommands.png" usedList="bmpPic1, bmpPic2, bmpPic3, bmpPic4, bmpPic5, bmpPicStrikethrough"/>
+      <Bitmap guid="guidImages" href="Resources\PsuedoLocCommands.png" usedList="bmpPic1, bmpPic2, bmpPic3, bmpPic4, bmpPic5, bmpPic6"/>
     </Bitmaps>
   </Commands>
 
@@ -118,6 +126,10 @@
     <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="DiacriticsCommandId" priority="0x0200">
       <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
     </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="DoubleCommandId" priority="0x0200">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
+    </CommandPlacement>
   </CommandPlacements>
 
   <Symbols>
@@ -138,6 +150,7 @@
       <IDSymbol name="PaddingCommandId" value="4126" />
       <IDSymbol name="ReverseCommandId" value="4127" />
       <IDSymbol name="SurroundCommandId" value="4128" />
+      <IDSymbol name="DoubleCommandId" value="4129" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{cd32c8e2-45ed-459e-8bda-a0c4232d305d}" >
@@ -146,7 +159,7 @@
       <IDSymbol name="bmpPic3" value="3" />
       <IDSymbol name="bmpPic4" value="4" />
       <IDSymbol name="bmpPic5" value="5" />
-      <IDSymbol name="bmpPicStrikethrough" value="6" />
+      <IDSymbol name="bmpPic6" value="6" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>
