@@ -23,8 +23,6 @@ namespace ResPsuedoLoc.Commands
             this.package = package ?? throw new ArgumentNullException(nameof(package));
         }
 
-        protected string SelectedFileName { get; set; }
-
         private Microsoft.VisualStudio.Shell.IAsyncServiceProvider ServiceProvider
         {
             get
@@ -35,8 +33,25 @@ namespace ResPsuedoLoc.Commands
 
         public void ForEachStringResourceEntry(Func<string, string> doThis)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            IVsMonitorSelection monitorSelection =
+                    (IVsMonitorSelection)Package.GetGlobalService(typeof(SVsShellMonitorSelection));
+
+            monitorSelection.GetCurrentSelection(
+                                                 out IntPtr hierarchyPointer,
+                                                 out uint itemId,
+                                                 out IVsMultiItemSelect multiItemSelect,
+                                                 out IntPtr selectionContainerPointer);
+
+            IVsHierarchy selectedHierarchy = Marshal.GetTypedObjectForIUnknown(
+                                                 hierarchyPointer,
+                                                 typeof(IVsHierarchy)) as IVsHierarchy;
+
+            ((IVsProject)selectedHierarchy).GetMkDocument(itemId, out string itemFullPath);
+
             var xdoc = new XmlDocument();
-            xdoc.Load(this.SelectedFileName);
+            xdoc.Load(itemFullPath);
 
             foreach (XmlElement element in xdoc.GetElementsByTagName("data"))
             {
@@ -47,7 +62,7 @@ namespace ResPsuedoLoc.Commands
                 valueElement.InnerText = doThis(valueElement.InnerText);
             }
 
-            xdoc.Save(this.SelectedFileName);
+            xdoc.Save(itemFullPath);
         }
     }
 }
