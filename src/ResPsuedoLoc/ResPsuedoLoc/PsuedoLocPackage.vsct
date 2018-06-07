@@ -44,7 +44,7 @@
         <Icon guid="guidImages" id="bmpPic5" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>[! Surround !]</ButtonText>
+          <ButtonText>[! Surround !]  (toggle)</ButtonText>
         </Strings>
       </Button>
 
@@ -52,7 +52,7 @@
         <Icon guid="guidImages" id="bmpPic4" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>esreveR</ButtonText>
+          <ButtonText>esreveR  (toggle)</ButtonText>
         </Strings>
       </Button>
 
@@ -60,7 +60,7 @@
         <Icon guid="guidImages" id="bmpPic3" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>P-a-d-d-i-n-g</ButtonText>
+          <ButtonText>P-a-d-d-i-n-g  (toggle)</ButtonText>
         </Strings>
       </Button>
 
@@ -68,7 +68,7 @@
         <Icon guid="guidImages" id="bmpPic2" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>iNVERT cASE</ButtonText>
+          <ButtonText>iNVERT cASE  (toggle)</ButtonText>
         </Strings>
       </Button>
 
@@ -76,7 +76,7 @@
         <Icon guid="guidImages" id="bmpPic1" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>Dï̤a͇̿c̥̊r̡̉ï̤ṱ̂i̥̊c̮̆s͇̿</ButtonText>
+          <ButtonText>Dï̤a͇̿c̥̊r̡̉ï̤ṱ̂i̥̊c̮̆s͇̿  (toggle)</ButtonText>
         </Strings>
       </Button>
 
@@ -84,7 +84,7 @@
         <Icon guid="guidImages" id="bmpPic6" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>DDoouubbllee</ButtonText>
+          <ButtonText>DDoouubbllee  (toggle)</ButtonText>
         </Strings>
       </Button>
     </Buttons>
