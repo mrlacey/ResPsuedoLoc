@@ -87,6 +87,16 @@
           <ButtonText>DDoouubbllee  (toggle)</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="guidPsuedoLocPackageCmdSet" id="UpperCaseCommandId" priority="0x0200" type="Button">
+        <Icon guid="guidImages" id="bmpPic6" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>UPPERCASE</ButtonText>
+        </Strings>
+      </Button>
+
+
     </Buttons>
 
     <Bitmaps>
@@ -130,6 +140,10 @@
     <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="DoubleCommandId" priority="0x0200">
       <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
     </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="UpperCaseCommandId" priority="0x0200">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
+    </CommandPlacement>
   </CommandPlacements>
 
   <Symbols>
@@ -151,6 +165,7 @@
       <IDSymbol name="ReverseCommandId" value="4127" />
       <IDSymbol name="SurroundCommandId" value="4128" />
       <IDSymbol name="DoubleCommandId" value="4129" />
+      <IDSymbol name="UpperCaseCommandId" value="4130" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{cd32c8e2-45ed-459e-8bda-a0c4232d305d}" >
