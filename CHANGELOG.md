@@ -7,7 +7,7 @@
 
 Features that have a checkmark are complete and available for
 download in the
-[CI build](#NotYetImplemented-Issue16).
+[CI build](http://vsixgallery.com/extension/ResPsuedoLoc.fb9c5e68-fb3b-44f4-9412-717109dc3ba9/).
 
 # Change log
 

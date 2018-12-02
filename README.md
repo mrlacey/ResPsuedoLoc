@@ -1,6 +1,8 @@
 # Resource Pseudo-Localizer
 
 Download the extension from the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=MattLaceyLtd.ResourcePseudoLocalizer)
+or get the
+[CI build](http://vsixgallery.com/extension/ResPsuedoLoc.fb9c5e68-fb3b-44f4-9412-717109dc3ba9/)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/kethy80vjrqfsucc?svg=true)](https://ci.appveyor.com/project/mrlacey/respsuedoloc)
 
