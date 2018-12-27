@@ -41,7 +41,7 @@
 
     <Buttons>
       <Button guid="guidPsuedoLocPackageCmdSet" id="SurroundCommandId" priority="0x0100" type="Button">
-        <Icon guid="guidImages" id="bmpPic5" />
+        <Icon guid="toggleImages" id="bmpPic5" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>[! Surround !]  (toggle)</ButtonText>
@@ -49,7 +49,7 @@
       </Button>
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="ReverseCommandId" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic4" />
+        <Icon guid="toggleImages" id="bmpPic4" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>esreveR  (toggle)</ButtonText>
@@ -57,7 +57,7 @@
       </Button>
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="PaddingCommandId" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic3" />
+        <Icon guid="toggleImages" id="bmpPic3" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>P-a-d-d-i-n-g  (toggle)</ButtonText>
@@ -65,7 +65,7 @@
       </Button>
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="InvertCaseCommandId" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic2" />
+        <Icon guid="toggleImages" id="bmpPic2" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>iNVERT cASE  (toggle)</ButtonText>
@@ -73,7 +73,7 @@
       </Button>
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="DiacriticsCommandId" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="toggleImages" id="bmpPic1" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Dï̤a͇̿c̥̊r̡̉ï̤ṱ̂i̥̊c̮̆s͇̿  (toggle)</ButtonText>
@@ -81,7 +81,7 @@
       </Button>
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="DoubleCommandId" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic6" />
+        <Icon guid="toggleImages" id="bmpPic6" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>DDoouubbllee  (toggle)</ButtonText>
@@ -89,7 +89,7 @@
       </Button>
 
       <Button guid="guidPsuedoLocPackageCmdSet" id="UpperCaseCommandId" priority="0x0200" type="Button">
-        <Icon guid="guidImages" id="bmpPic6" />
+        <Icon guid="oneWayImages" id="bmpPic1" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>UPPERCASE</ButtonText>
@@ -100,7 +100,8 @@
     </Buttons>
 
     <Bitmaps>
-      <Bitmap guid="guidImages" href="Resources\PsuedoLocCommands.png" usedList="bmpPic1, bmpPic2, bmpPic3, bmpPic4, bmpPic5, bmpPic6"/>
+      <Bitmap guid="toggleImages" href="Resources\PsuedoLocCommands.png" usedList="bmpPic1, bmpPic2, bmpPic3, bmpPic4, bmpPic5, bmpPic6"/>
+      <Bitmap guid="oneWayImages" href="Resources\1WayPsuedoLocCommands.png" usedList="bmpPic1, bmpPic2, bmpPic3, bmpPic4, bmpPic5, bmpPic6"/>
     </Bitmaps>
   </Commands>
 
@@ -168,7 +169,16 @@
       <IDSymbol name="UpperCaseCommandId" value="4130" />
     </GuidSymbol>
 
-    <GuidSymbol name="guidImages" value="{cd32c8e2-45ed-459e-8bda-a0c4232d305d}" >
+    <GuidSymbol name="toggleImages" value="{cd32c8e2-45ed-459e-8bda-a0c4232d305d}" >
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPic3" value="3" />
+      <IDSymbol name="bmpPic4" value="4" />
+      <IDSymbol name="bmpPic5" value="5" />
+      <IDSymbol name="bmpPic6" value="6" />
+    </GuidSymbol>
+
+    <GuidSymbol name="oneWayImages" value="{30200927-5189-4D39-B8D4-516A6DEEED2B}" >
       <IDSymbol name="bmpPic1" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
       <IDSymbol name="bmpPic3" value="3" />

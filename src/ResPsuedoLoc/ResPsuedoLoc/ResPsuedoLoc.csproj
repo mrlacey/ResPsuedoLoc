@@ -81,6 +81,7 @@
     <AdditionalFiles Include="StyleCop.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\1WayPsuedoLocCommands.png" />
     <Content Include="Resources\PsuedoLocCommands.png" />
     <Content Include="Resources\PsuedoLocPackage.ico" />
     <VSCTCompile Include="PsuedoLocPackage.vsct">
