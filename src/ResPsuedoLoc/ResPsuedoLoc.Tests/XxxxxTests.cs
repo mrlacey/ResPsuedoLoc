@@ -23,17 +23,17 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void CanHandleNonAscii()
         {
-            var actual = XxxxxCommand.XxxxxLogic("mrläcey");
+            var actual = XxxxxCommand.XxxxxLogic("mrläÄcey");
 
-            Assert.AreEqual("xxxxxxx", actual);
+            Assert.AreEqual("xxxxXxxx", actual);
         }
 
         [TestMethod]
         public void CanHandleCyrillic()
         {
-            var actual = XxxxxCommand.XxxxxLogic("матт");
+            var actual = XxxxxCommand.XxxxxLogic("Матт");
 
-            Assert.AreEqual("xxxx", actual);
+            Assert.AreEqual("Xxxx", actual);
         }
     }
 }

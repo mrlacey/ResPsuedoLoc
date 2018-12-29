@@ -112,6 +112,14 @@
         </Strings>
       </Button>
 
+      <Button guid="guidPsuedoLocPackageCmdSet" id="AlternateCaseCommandId" priority="0x0200" type="Button">
+        <Icon guid="oneWayImages" id="bmpPic4" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>AlTeRnAtE cAsE</ButtonText>
+        </Strings>
+      </Button>
+
     </Buttons>
 
     <Bitmaps>
@@ -168,6 +176,10 @@
     <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="L337CommandId" priority="0x0200">
       <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
     </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="AlternateCaseCommandId" priority="0x0200">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
+    </CommandPlacement>
   </CommandPlacements>
 
   <Symbols>
@@ -192,6 +204,7 @@
       <IDSymbol name="UpperCaseCommandId" value="4130" />
       <IDSymbol name="XxxxxCommandId" value="4131" />
       <IDSymbol name="L337CommandId" value="4132" />
+      <IDSymbol name="AlternateCaseCommandId" value="4133" />
     </GuidSymbol>
 
     <GuidSymbol name="toggleImages" value="{cd32c8e2-45ed-459e-8bda-a0c4232d305d}" >

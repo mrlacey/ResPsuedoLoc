@@ -56,6 +56,7 @@
     <NoWarn>SA1652</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\AlternateCaseCommand.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\L337Command.cs" />
     <Compile Include="Commands\ReverseCommand.cs" />

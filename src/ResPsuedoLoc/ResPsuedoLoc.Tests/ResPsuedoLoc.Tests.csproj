@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlternateCaseTests.cs" />
     <Compile Include="CombinationTests.cs" />
     <Compile Include="CombinationTestsUsingGeneration.cs" />
     <Compile Include="DiacriticsTests.cs" />

@@ -3,7 +3,7 @@
 - [x] 'All UPPERCASE' command
 - [x] 'All XXXXX' command
 - [x] 'L33T' command
-- [ ] 'AlTeRnAtE cAsE' command
+- [x] 'AlTeRnAtE cAsE' command
 
 Features that have a checkmark are complete and available for
 download in the
