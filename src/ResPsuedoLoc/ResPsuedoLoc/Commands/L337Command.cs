@@ -83,6 +83,18 @@ namespace ResPsuedoLoc.Commands
                         case "O":
                             result.Append('0');
                             break;
+                        case "C":
+                            result.Append('(');
+                            break;
+                        case "H":
+                            result.Append('#');
+                            break;
+                        case "K":
+                            result.Append('{');
+                            break;
+                        case "X":
+                            result.Append('%');
+                            break;
                         default:
                             result.Append(letter);
                             break;

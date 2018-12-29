@@ -17,7 +17,7 @@ namespace ResPsuedoLoc.Tests
 
             var actual = L337Command.L337Logic(source);
 
-            Assert.AreEqual("M1x3d C453 53n73nc3.", actual);
+            Assert.AreEqual("M1%3d (453 53n73n(3.", actual);
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace ResPsuedoLoc.Tests
 
             var actual = L337Command.L337Logic(source);
 
-            Assert.AreEqual("48cd3f6h1jklmn0p9r57uvwxy2.48CD3F6H1JKLMN0P9R57UVWXY2", actual);
+            Assert.AreEqual("48(d3f6#1j{lmn0p9r57uvw%y2.48(D3F6#1J{LMN0P9R57UVW%Y2", actual);
         }
     }
 }
