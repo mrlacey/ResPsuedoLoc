@@ -56,6 +56,7 @@ namespace ResPsuedoLoc
             await DoubleCommand.InitializeAsync(this);
             await UppercaseCommand.InitializeAsync(this);
             await XxxxxCommand.InitializeAsync(this);
+            await L337Command.InitializeAsync(this);
         }
     }
 }

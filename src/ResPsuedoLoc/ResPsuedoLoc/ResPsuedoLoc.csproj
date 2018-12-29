@@ -57,6 +57,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Commands\L337Command.cs" />
     <Compile Include="Commands\ReverseCommand.cs" />
     <Compile Include="Commands\InvertCaseCommand.cs" />
     <Compile Include="Commands\PaddingCommand.cs" />

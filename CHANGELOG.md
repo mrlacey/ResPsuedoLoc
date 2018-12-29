@@ -1,8 +1,8 @@
 # Road map
 
-- [ ] 'All UPPERCASE' command
-- [ ] 'All XXXXX' command
-- [ ] 'L33T' command
+- [x] 'All UPPERCASE' command
+- [x] 'All XXXXX' command
+- [x] 'L33T' command
 - [ ] 'AlTeRnAtE cAsE' command
 
 Features that have a checkmark are complete and available for
