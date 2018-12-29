@@ -15,7 +15,7 @@ namespace ResPsuedoLoc
     [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasMultipleProjects, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasSingleProject, PackageAutoLoadFlags.BackgroundLoad)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [InstalledProductRegistration("#110", "#112", "1.1", IconResourceID = 400)] // Info on this package for Help/About
+    [InstalledProductRegistration("#110", "#112", "2.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PsuedoLocPackage.PackageGuidString)]
     [ProvideUIContextRule(UiContextSupportedFiles, name: "Supported Files", expression: "RESX | RESW", termNames: new[] { "resx", "resw" }, termValues: new[] { "HierSingleSelectionName:.resx$", "HierSingleSelectionName:.resw$" })]
