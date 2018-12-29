@@ -1,9 +1,6 @@
 # Road map
 
-- [x] 'All UPPERCASE' command
-- [x] 'All XXXXX' command
-- [x] 'L33T' command
-- [x] 'AlTeRnAtE cAsE' command
+- [ ] VS 2019 support
 
 Features that have a checkmark are complete and available for
 download in the
@@ -13,6 +10,13 @@ download in the
 
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
+
+## 2.0
+
+- [x] 'All UPPERCASE' command
+- [x] 'All XXXXX' command
+- [x] 'L33T' command
+- [x] 'AlTeRnAtE cAsE' command
 
 ## 1.0
 
