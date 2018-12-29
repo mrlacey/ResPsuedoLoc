@@ -55,6 +55,7 @@
     <Compile Include="ReverseTests.cs" />
     <Compile Include="SurroundTests.cs" />
     <Compile Include="UppercaseTests.cs" />
+    <Compile Include="XxxxxTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\ResPsuedoLoc\StyleCop.json">

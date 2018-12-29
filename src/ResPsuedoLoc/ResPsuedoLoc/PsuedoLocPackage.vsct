@@ -96,6 +96,14 @@
         </Strings>
       </Button>
 
+      <Button guid="guidPsuedoLocPackageCmdSet" id="XxxxxCommandId" priority="0x0200" type="Button">
+        <Icon guid="oneWayImages" id="bmpPic2" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Xxxxxx</ButtonText>
+        </Strings>
+      </Button>
+
 
     </Buttons>
 
@@ -145,6 +153,10 @@
     <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="UpperCaseCommandId" priority="0x0200">
       <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
     </CommandPlacement>
+
+    <CommandPlacement guid="guidPsuedoLocPackageCmdSet" id="XxxxxCommandId" priority="0x0200">
+      <Parent guid="guidPsuedoLocPackageCmdSet" id="SolutionContextMenuGroup" />
+    </CommandPlacement>
   </CommandPlacements>
 
   <Symbols>
@@ -167,6 +179,7 @@
       <IDSymbol name="SurroundCommandId" value="4128" />
       <IDSymbol name="DoubleCommandId" value="4129" />
       <IDSymbol name="UpperCaseCommandId" value="4130" />
+      <IDSymbol name="XxxxxCommandId" value="4131" />
     </GuidSymbol>
 
     <GuidSymbol name="toggleImages" value="{cd32c8e2-45ed-459e-8bda-a0c4232d305d}" >

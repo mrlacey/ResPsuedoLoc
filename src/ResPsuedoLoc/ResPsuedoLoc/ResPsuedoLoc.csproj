@@ -65,6 +65,7 @@
     <Compile Include="Commands\ReversableCommand.cs" />
     <Compile Include="Commands\ToggleMode.cs" />
     <Compile Include="Commands\UppercaseCommand.cs" />
+    <Compile Include="Commands\XxxxxCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\SurroundCommand.cs" />
     <Compile Include="PsuedoLocPackage.cs" />
