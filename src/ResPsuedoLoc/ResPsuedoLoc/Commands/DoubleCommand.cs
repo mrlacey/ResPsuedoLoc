@@ -245,6 +245,8 @@ namespace ResPsuedoLoc.Commands
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
+            this.Mode = ToggleMode.NotSet;
+
             this.ForEachStringResourceEntry(this.DoubleLogic);
         }
     }
