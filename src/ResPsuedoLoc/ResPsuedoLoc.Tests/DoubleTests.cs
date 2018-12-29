@@ -13,7 +13,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void MakeDouble()
         {
-            var actual = DoubleCommand.DoubleLogic("abc");
+            var actual = DoubleCommand.DoubleLogic("abc", ToggleMode.Apply);
 
             Assert.AreEqual("aabbcc", actual);
         }
@@ -21,7 +21,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveDoubles()
         {
-            var actual = DoubleCommand.DoubleLogic("aabbcc");
+            var actual = DoubleCommand.DoubleLogic("aabbcc", ToggleMode.Reverse);
 
             Assert.AreEqual("abc", actual);
         }
@@ -29,7 +29,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void PartialDoublesAreDoubled()
         {
-            var actual = DoubleCommand.DoubleLogic("AAbc");
+            var actual = DoubleCommand.DoubleLogic("AAbc", ToggleMode.Apply);
 
             Assert.AreEqual("AAAAbbcc", actual);
         }
@@ -37,7 +37,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void SpacesAreNotDoubled()
         {
-            var actual = DoubleCommand.DoubleLogic("A c");
+            var actual = DoubleCommand.DoubleLogic("A c", ToggleMode.Apply);
 
             Assert.AreEqual("AA cc", actual);
         }
@@ -45,7 +45,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void SpacesAreIgnoredWhenRemovingDoubles()
         {
-            var actual = DoubleCommand.DoubleLogic("AA cc");
+            var actual = DoubleCommand.DoubleLogic("AA cc", ToggleMode.Reverse);
 
             Assert.AreEqual("A c", actual);
         }
@@ -53,17 +53,69 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void SpacesAtStartAndEndAreIgnoredWhenRemovingDoubles()
         {
-            var actual = DoubleCommand.DoubleLogic(" AA cc ");
+            var actual = DoubleCommand.DoubleLogic(" AA cc ", ToggleMode.Reverse);
 
             Assert.AreEqual(" A c ", actual);
         }
 
         [TestMethod]
-        public void HandlesEmptyString()
+        public void HandlesEmptyString_Apply()
         {
-            var actual = DoubleCommand.DoubleLogic(string.Empty);
+            var actual = DoubleCommand.DoubleLogic(string.Empty, ToggleMode.Apply);
 
             Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void HandlesEmptyString_Reverse()
+        {
+            var actual = DoubleCommand.DoubleLogic(string.Empty, ToggleMode.Reverse);
+
+            Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void CallingApplyMultipleTimesHasNoEffect()
+        {
+            var origin = "Original String";
+
+            var once = DoubleCommand.DoubleLogic(origin, ToggleMode.Apply);
+
+            var twice = DoubleCommand.DoubleLogic(origin, ToggleMode.Apply);
+            twice = DoubleCommand.DoubleLogic(twice, ToggleMode.Apply);
+
+            Assert.AreEqual(once, twice);
+        }
+
+        [TestMethod]
+        public void CallingReverseMultipleTimesHasNoEffect()
+        {
+            var origin = "Original String";
+
+            var once = DoubleCommand.DoubleLogic(origin, ToggleMode.Apply);
+            once = DoubleCommand.DoubleLogic(once, ToggleMode.Reverse);
+
+            var twice = DoubleCommand.DoubleLogic(origin, ToggleMode.Apply);
+            twice = DoubleCommand.DoubleLogic(twice, ToggleMode.Reverse);
+            twice = DoubleCommand.DoubleLogic(twice, ToggleMode.Reverse);
+
+            Assert.AreEqual(once, twice);
+        }
+
+        [TestMethod]
+        public void CanHandleNonAscii()
+        {
+            var actual = DoubleCommand.DoubleLogic("mrläcey", ToggleMode.Apply);
+
+            Assert.AreEqual("mmrrllääcceeyy", actual);
+        }
+
+        [TestMethod]
+        public void CanHandleCyrillic()
+        {
+            var actual = DoubleCommand.DoubleLogic("матт", ToggleMode.Apply);
+
+            Assert.AreEqual("ммаатттт", actual);
         }
     }
 }

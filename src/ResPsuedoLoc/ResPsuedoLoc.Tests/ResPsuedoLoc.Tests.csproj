@@ -44,11 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CombinationTests.cs" />
+    <Compile Include="CombinationTestsUsingGeneration.cs" />
     <Compile Include="DiacriticsTests.cs" />
     <Compile Include="DoubleTests.cs" />
     <Compile Include="InvertCaseTests.cs" />
+    <Compile Include="ListOfStringAssert.cs" />
     <Compile Include="PaddingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReversableCommandsTests.cs" />
     <Compile Include="ReverseTests.cs" />
     <Compile Include="SurroundTests.cs" />
     <Compile Include="UppercaseTests.cs" />

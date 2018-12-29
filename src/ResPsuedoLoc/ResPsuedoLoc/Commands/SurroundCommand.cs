@@ -3,13 +3,14 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
 {
-    public sealed class SurroundCommand : BaseCommand
+    public sealed class SurroundCommand : ReversableCommand
     {
         public const int CommandId = 4128;
 
@@ -28,10 +29,17 @@ namespace ResPsuedoLoc.Commands
             commandService.AddCommand(menuItem);
         }
 
-        public static SurroundCommand Instance
+        private SurroundCommand()
+            : base()
         {
-            get;
-            private set;
+            // For testing use only
+        }
+
+        public static SurroundCommand Instance { get; private set; }
+
+        public static SurroundCommand CreateForTesting()
+        {
+            return new SurroundCommand();
         }
 
         public static async Task InitializeAsync(AsyncPackage package)
@@ -42,16 +50,57 @@ namespace ResPsuedoLoc.Commands
             Instance = new SurroundCommand(package, commandService);
         }
 
-        public static string SurroundLogic(string input)
+        public static string SurroundLogic(string input, ToggleMode toggleMode)
         {
-            if (IsSurrounded(input))
+            if (toggleMode == ToggleMode.NotSet)
             {
-                return RemoveSurrounds(input);
+                return input;
+            }
+
+            if (toggleMode == ToggleMode.Apply)
+            {
+                if (IsSurrounded(input))
+                {
+                    return input;
+                }
+                else
+                {
+                    return $"{SurroundStart}{input}{SurroundEnd}";
+                }
             }
             else
             {
-                return $"{SurroundStart}{input}{SurroundEnd}";
+                if (IsSurrounded(input))
+                {
+                    return RemoveSurrounds(input);
+                }
+                else
+                {
+                    return input;
+                }
             }
+        }
+
+        public string SurroundLogic(string input)
+        {
+            if (this.Mode == ToggleMode.NotSet)
+            {
+                this.Mode = this.GetToggleMode(input);
+            }
+
+            return SurroundLogic(input, this.Mode);
+        }
+
+        public override List<string> TestActingOnMultipleStrings(List<string> inputs)
+        {
+            var result = new List<string>();
+
+            foreach (var input in inputs)
+            {
+                result.Add(this.SurroundLogic(input));
+            }
+
+            return result;
         }
 
         internal static string RemoveSurrounds(string input)
@@ -64,11 +113,16 @@ namespace ResPsuedoLoc.Commands
             return input.StartsWith(SurroundStart) && input.EndsWith(SurroundEnd);
         }
 
+        internal new ToggleMode GetToggleMode(string input)
+        {
+            return IsSurrounded(input) ? ToggleMode.Reverse : ToggleMode.Apply;
+        }
+
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            this.ForEachStringResourceEntry(SurroundLogic);
+            this.ForEachStringResourceEntry(this.SurroundLogic);
         }
     }
 }

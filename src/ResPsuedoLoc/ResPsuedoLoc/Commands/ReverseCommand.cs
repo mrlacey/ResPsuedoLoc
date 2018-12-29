@@ -54,7 +54,7 @@ namespace ResPsuedoLoc.Commands
 
             if (surrounded)
             {
-                result = SurroundCommand.SurroundLogic(result);
+                result = SurroundCommand.SurroundLogic(result, ToggleMode.Apply);
             }
 
             return result;

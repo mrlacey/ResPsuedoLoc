@@ -11,89 +11,99 @@ namespace ResPsuedoLoc.Tests
     public class DiacriticsTests
     {
         [TestMethod]
-        public void AddToStringOfLength1()
+        public void AddToStringOfLength1_Equals()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a");
+            var actual = DiacriticsCommand.DiacriticsLogic("a", ToggleMode.Apply);
 
             Assert.AreEqual("a\u033F\u0347", actual);
+            Assert.AreEqual("a͇̿", actual);
         }
 
         [TestMethod]
-        public void AddToStringOfLength2()
+        public void AddToStringOfLength2_Breve()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("ab");
+            var actual = DiacriticsCommand.DiacriticsLogic("ab", ToggleMode.Apply);
 
             Assert.AreEqual("a\u0306\u032Eb\u0306\u032E", actual);
+            Assert.AreEqual("ă̮b̮̆", actual);
         }
 
         [TestMethod]
-        public void AddToStringOfLength3()
+        public void AddToStringOfLength3_Bridge()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("abc");
+            var actual = DiacriticsCommand.DiacriticsLogic("abc", ToggleMode.Apply);
 
             Assert.AreEqual("a\u0346\u033Ab\u0346\u033Ac\u0346\u033A", actual);
+            Assert.AreEqual("a̺͆b̺͆c̺͆", actual);
         }
 
         [TestMethod]
-        public void AddToStringOfLength4()
+        public void AddToStringOfLength4_Ring()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("abcd");
+            var actual = DiacriticsCommand.DiacriticsLogic("abcd", ToggleMode.Apply);
 
             Assert.AreEqual("a\u030A\u0325b\u030A\u0325c\u030A\u0325d\u030A\u0325", actual);
+            Assert.AreEqual("ḁ̊b̥̊c̥̊d̥̊", actual);
         }
 
         [TestMethod]
-        public void AddToStringOfLength5()
+        public void AddToStringOfLength5_Circumflex()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("abcde");
+            var actual = DiacriticsCommand.DiacriticsLogic("abcde", ToggleMode.Apply);
 
             Assert.AreEqual("a\u0302\u032Db\u0302\u032Dc\u0302\u032Dd\u0302\u032De\u0302\u032D", actual);
+            Assert.AreEqual("â̭b̭̂ĉ̭ḓ̂ḙ̂", actual);
         }
 
         [TestMethod]
-        public void AddToStringOfLength6()
+        public void AddToStringOfLength6_Grave()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("abcdef");
+            var actual = DiacriticsCommand.DiacriticsLogic("abcdef", ToggleMode.Apply);
 
             Assert.AreEqual("a\u0300\u0316b\u0300\u0316c\u0300\u0316d\u0300\u0316e\u0300\u0316f\u0300\u0316", actual);
+            Assert.AreEqual("à̖b̖̀c̖̀d̖̀è̖f̖̀", actual);
         }
 
         [TestMethod]
-        public void AddToStringOfLength7()
+        public void AddToStringOfLength7_Acute()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("abcdefg");
+            var actual = DiacriticsCommand.DiacriticsLogic("abcdefg", ToggleMode.Apply);
 
             Assert.AreEqual("a\u0301\u0317b\u0301\u0317c\u0301\u0317d\u0301\u0317e\u0301\u0317f\u0301\u0317g\u0301\u0317", actual);
+            Assert.AreEqual("á̗b̗́ć̗d̗́é̗f̗́ǵ̗", actual);
         }
 
         [TestMethod]
-        public void AddToStringOfLength8()
+        public void AddToStringOfLength8_Hook()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("abcdefgh");
+            var actual = DiacriticsCommand.DiacriticsLogic("abcdefgh", ToggleMode.Apply);
 
             Assert.AreEqual("a\u0309\u0321b\u0309\u0321c\u0309\u0321d\u0309\u0321e\u0309\u0321f\u0309\u0321g\u0309\u0321h\u0309\u0321", actual);
+            Assert.AreEqual("ả̡b̡̉c̡̉d̡̉ẻ̡f̡̉g̡̉h̡̉", actual);
         }
 
         [TestMethod]
-        public void AddToStringOfLength9()
+        public void AddToStringOfLength9_Umlaut()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("abcdefghi");
+            var actual = DiacriticsCommand.DiacriticsLogic("abcdefghi", ToggleMode.Apply);
 
             Assert.AreEqual("a\u0308\u0324b\u0308\u0324c\u0308\u0324d\u0308\u0324e\u0308\u0324f\u0308\u0324g\u0308\u0324h\u0308\u0324i\u0308\u0324", actual);
+            Assert.AreEqual("ä̤b̤̈c̤̈d̤̈ë̤f̤̈g̤̈ḧ̤ï̤", actual);
         }
 
         [TestMethod]
-        public void AddToStringOfLength10()
+        public void AddToStringOfLength10_Equals()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("abcdefghij");
+            var actual = DiacriticsCommand.DiacriticsLogic("abcdefghij", ToggleMode.Apply);
 
             Assert.AreEqual("a\u033F\u0347b\u033F\u0347c\u033F\u0347d\u033F\u0347e\u033F\u0347f\u033F\u0347g\u033F\u0347h\u033F\u0347i\u033F\u0347j\u033F\u0347", actual);
+            Assert.AreEqual("a͇̿b͇̿c͇̿d͇̿e͇̿f͇̿g͇̿h͇̿i͇̿j͇̿", actual);
         }
 
         [TestMethod]
         public void RemoveInStringOfLength1()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u033F\u0347");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u033F\u0347", ToggleMode.Reverse);
 
             Assert.AreEqual("a", actual);
         }
@@ -101,7 +111,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveInStringOfLength2()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u0306\u032Eb\u0306\u032E");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u0306\u032Eb\u0306\u032E", ToggleMode.Reverse);
 
             Assert.AreEqual("ab", actual);
         }
@@ -109,7 +119,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveInStringOfLength3()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u0346\u033Ab\u0346\u033Ac\u0346\u033A");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u0346\u033Ab\u0346\u033Ac\u0346\u033A", ToggleMode.Reverse);
 
             Assert.AreEqual("abc", actual);
         }
@@ -117,7 +127,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveInStringOfLength4()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u030A\u0325b\u030A\u0325c\u030A\u0325d\u030A\u0325");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u030A\u0325b\u030A\u0325c\u030A\u0325d\u030A\u0325", ToggleMode.Reverse);
 
             Assert.AreEqual("abcd", actual);
         }
@@ -125,7 +135,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveInStringOfLength5()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u0302\u032Db\u0302\u032Dc\u0302\u032Dd\u0302\u032De\u0302\u032D");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u0302\u032Db\u0302\u032Dc\u0302\u032Dd\u0302\u032De\u0302\u032D", ToggleMode.Reverse);
 
             Assert.AreEqual("abcde", actual);
         }
@@ -133,7 +143,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveInStringOfLength6()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u0300\u0316b\u0300\u0316c\u0300\u0316d\u0300\u0316e\u0300\u0316f\u0300\u0316");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u0300\u0316b\u0300\u0316c\u0300\u0316d\u0300\u0316e\u0300\u0316f\u0300\u0316", ToggleMode.Reverse);
 
             Assert.AreEqual("abcdef", actual);
         }
@@ -141,7 +151,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveInStringOfLength7()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u0301\u0317b\u0301\u0317c\u0301\u0317d\u0301\u0317e\u0301\u0317f\u0301\u0317g\u0301\u0317");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u0301\u0317b\u0301\u0317c\u0301\u0317d\u0301\u0317e\u0301\u0317f\u0301\u0317g\u0301\u0317", ToggleMode.Reverse);
 
             Assert.AreEqual("abcdefg", actual);
         }
@@ -149,7 +159,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveInStringOfLength8()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u0309\u0321b\u0309\u0321c\u0309\u0321d\u0309\u0321e\u0309\u0321f\u0309\u0321g\u0309\u0321h\u0309\u0321");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u0309\u0321b\u0309\u0321c\u0309\u0321d\u0309\u0321e\u0309\u0321f\u0309\u0321g\u0309\u0321h\u0309\u0321", ToggleMode.Reverse);
 
             Assert.AreEqual("abcdefgh", actual);
         }
@@ -157,7 +167,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveInStringOfLength9()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u0308\u0324b\u0308\u0324c\u0308\u0324d\u0308\u0324e\u0308\u0324f\u0308\u0324g\u0308\u0324h\u0308\u0324i\u0308\u0324");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u0308\u0324b\u0308\u0324c\u0308\u0324d\u0308\u0324e\u0308\u0324f\u0308\u0324g\u0308\u0324h\u0308\u0324i\u0308\u0324", ToggleMode.Reverse);
 
             Assert.AreEqual("abcdefghi", actual);
         }
@@ -165,7 +175,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemoveInStringOfLength10()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u033F\u0347b\u033F\u0347c\u033F\u0347d\u033F\u0347e\u033F\u0347f\u033F\u0347g\u033F\u0347h\u033F\u0347i\u033F\u0347j\u033F\u0347");
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u033F\u0347b\u033F\u0347c\u033F\u0347d\u033F\u0347e\u033F\u0347f\u033F\u0347g\u033F\u0347h\u033F\u0347i\u033F\u0347j\u033F\u0347", ToggleMode.Reverse);
 
             Assert.AreEqual("abcdefghij", actual);
         }
@@ -173,7 +183,7 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void AddToStringSkipsSpaces()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("ab de");
+            var actual = DiacriticsCommand.DiacriticsLogic("ab de", ToggleMode.Apply);
 
             Assert.AreEqual("a\u0302\u032Db\u0302\u032D d\u0302\u032De\u0302\u032D", actual);
         }
@@ -181,9 +191,55 @@ namespace ResPsuedoLoc.Tests
         [TestMethod]
         public void RemovingFromStringSkipsSpaces()
         {
-            var actual = DiacriticsCommand.DiacriticsLogic("a\u0302\u032Db\u0302\u032D d\u0302\u032De\u0302\u032D");
+            var actual = DiacriticsCommand.DiacriticsLogic(" a\u0302\u032Db\u0302\u032D d\u0302\u032De\u0302\u032D ", ToggleMode.Reverse);
 
-            Assert.AreEqual("ab de", actual);
+            Assert.AreEqual(" ab de ", actual);
+        }
+
+        [TestMethod]
+        public void CallingApplyMultipleTimesHasNoEffect()
+        {
+            var origin = "Original String";
+
+            var once = DiacriticsCommand.DiacriticsLogic(origin, ToggleMode.Apply);
+
+            var twice = DiacriticsCommand.DiacriticsLogic(origin, ToggleMode.Apply);
+            twice = DiacriticsCommand.DiacriticsLogic(twice, ToggleMode.Apply);
+
+            Assert.AreEqual(once, twice);
+        }
+
+        [TestMethod]
+        public void CallingReverseMultipleTimesHasNoEffect()
+        {
+            var origin = "Original String";
+
+            var once = DiacriticsCommand.DiacriticsLogic(origin, ToggleMode.Apply);
+            once = DiacriticsCommand.DiacriticsLogic(once, ToggleMode.Reverse);
+
+            var twice = DiacriticsCommand.DiacriticsLogic(origin, ToggleMode.Apply);
+            twice = DiacriticsCommand.DiacriticsLogic(twice, ToggleMode.Reverse);
+            twice = DiacriticsCommand.DiacriticsLogic(twice, ToggleMode.Reverse);
+
+            Assert.AreEqual(once, twice);
+        }
+
+        [TestMethod]
+        public void CanHandleNonAscii()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("mrläcey", ToggleMode.Apply);
+
+            Assert.AreEqual("m\u0301\u0317r\u0301\u0317l\u0301\u0317ä\u0301\u0317c\u0301\u0317e\u0301\u0317y\u0301\u0317", actual);
+            Assert.AreEqual("ḿ̗ŕ̗ĺ̗ä̗́ć̗é̗ý̗", actual);
+        }
+
+        [TestMethod]
+        public void CanHandleCyrillic()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("матт", ToggleMode.Apply);
+
+            Assert.AreEqual("м\u030A\u0325а\u030A\u0325т\u030A\u0325т\u030A\u0325", actual);
+            Assert.AreEqual("м̥̊а̥̊т̥̊т̥̊", actual);
         }
     }
 }

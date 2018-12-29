@@ -3,14 +3,16 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
 {
-    public sealed class DoubleCommand : BaseCommand
+    public sealed class DoubleCommand : ReversableCommand
     {
         public const int CommandId = 4129;
 
@@ -26,10 +28,17 @@ namespace ResPsuedoLoc.Commands
             commandService.AddCommand(menuItem);
         }
 
-        public static DoubleCommand Instance
+        private DoubleCommand()
+            : base()
         {
-            get;
-            private set;
+            // For testing use only
+        }
+
+        public static DoubleCommand Instance { get; private set; }
+
+        public static DoubleCommand CreateForTesting()
+        {
+            return new DoubleCommand();
         }
 
         public static async Task InitializeAsync(AsyncPackage package)
@@ -40,38 +49,83 @@ namespace ResPsuedoLoc.Commands
             Instance = new DoubleCommand(package, commandService);
         }
 
-        public static string DoubleLogic(string input)
+        public static string DoubleLogic(string input, ToggleMode toggleMode)
         {
-            if (string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input) || toggleMode == ToggleMode.NotSet)
             {
                 return input;
             }
 
-            if (IsDoubled(input))
+            if (toggleMode == ToggleMode.Apply)
             {
-                return RemoveDoubling(input);
+                if (IsDoubled(input))
+                {
+                    return input;
+                }
+                else
+                {
+                    return Double(input);
+                }
             }
             else
             {
-                return Double(input);
+                if (IsDoubled(input))
+                {
+                    return RemoveDoubling(input);
+                }
+                else
+                {
+                    return input;
+                }
             }
+        }
+
+        public string DoubleLogic(string input)
+        {
+            if (this.Mode == ToggleMode.NotSet)
+            {
+                this.Mode = this.GetToggleMode(input);
+            }
+
+            return DoubleLogic(input, this.Mode);
+        }
+
+        public override List<string> TestActingOnMultipleStrings(List<string> inputs)
+        {
+            var result = new List<string>();
+
+            foreach (var input in inputs)
+            {
+                result.Add(this.DoubleLogic(input));
+            }
+
+            return result;
         }
 
         internal static bool IsDoubled(string input)
         {
-            var inputJustLetters = new StringBuilder();
+            var surrounded = SurroundCommand.IsSurrounded(input);
 
-            foreach (var character in input)
+            var stringToAdjust = input;
+
+            if (surrounded)
             {
-                if (char.IsLetter(character))
+                stringToAdjust = SurroundCommand.RemoveSurrounds(input);
+            }
+
+            var letters = stringToAdjust.GetGraphemeClusters().ToList();
+
+            var justLetters = new List<string>();
+
+            foreach (var letter in letters)
+            {
+                if (char.IsLetter(letter[0]))
                 {
-                    inputJustLetters.Append(character);
+                    justLetters.Add(letter);
                 }
             }
 
-            var justLetters = inputJustLetters.ToString();
-
-            for (int i = 1; i < justLetters.Length; i += 2)
+            for (var i = 1; i < justLetters.Count; i += 2)
             {
                 if (justLetters[i] != justLetters[i - 1])
                 {
@@ -84,15 +138,33 @@ namespace ResPsuedoLoc.Commands
 
         internal static string RemoveDoubling(string input)
         {
+            var surrounded = SurroundCommand.IsSurrounded(input);
+
+            var stringToAdjust = input;
+
+            if (surrounded)
+            {
+                stringToAdjust = SurroundCommand.RemoveSurrounds(input);
+            }
+
+            var padded = PaddingCommand.IsPadded(stringToAdjust);
+
+            if (padded)
+            {
+                stringToAdjust = PaddingCommand.PaddingLogic(stringToAdjust, ToggleMode.Reverse);
+            }
+
+            var letters = stringToAdjust.GetGraphemeClusters().ToList();
+
             var result = new StringBuilder();
 
-            int i = 0;
+            var i = 0;
 
-            while (i < input.Length)
+            while (i < letters.Count)
             {
-                result.Append(input[i]);
+                result.Append(letters[i]);
 
-                if (char.IsLetter(input[i]))
+                if (char.IsLetter(letters[i][0]))
                 {
                     i += 2;
                 }
@@ -102,31 +174,78 @@ namespace ResPsuedoLoc.Commands
                 }
             }
 
-            return result.ToString();
+            var resultString = result.ToString();
+
+            if (padded)
+            {
+                resultString = PaddingCommand.PaddingLogic(resultString, ToggleMode.Apply);
+            }
+
+            if (surrounded)
+            {
+                resultString = SurroundCommand.SurroundLogic(resultString, ToggleMode.Apply);
+            }
+
+            return resultString;
         }
 
         internal static string Double(string input)
         {
-            var result = new StringBuilder();
+            var surrounded = SurroundCommand.IsSurrounded(input);
 
-            foreach (var character in input)
+            var stringToAdjust = input;
+
+            if (surrounded)
             {
-                if (char.IsLetter(character))
-                {
-                    result.Append(character);
-                }
-
-                result.Append(character);
+                stringToAdjust = SurroundCommand.RemoveSurrounds(input);
             }
 
-            return result.ToString();
+            var padded = PaddingCommand.IsPadded(stringToAdjust);
+
+            if (padded)
+            {
+                stringToAdjust = PaddingCommand.RemovePadding(stringToAdjust);
+            }
+
+            var letters = stringToAdjust.GetGraphemeClusters().ToList();
+
+            var result = new StringBuilder();
+
+            foreach (var letter in letters)
+            {
+                if (char.IsLetter(letter[0]))
+                {
+                    result.Append(letter);
+                }
+
+                result.Append(letter);
+            }
+
+            var finalResult = result.ToString();
+
+            if (padded)
+            {
+                finalResult = PaddingCommand.AddPadding(finalResult);
+            }
+
+            if (surrounded)
+            {
+                finalResult = SurroundCommand.SurroundLogic(finalResult, ToggleMode.Apply);
+            }
+
+            return finalResult;
+        }
+
+        internal new ToggleMode GetToggleMode(string input)
+        {
+            return IsDoubled(input) ? ToggleMode.Reverse : ToggleMode.Apply;
         }
 
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            this.ForEachStringResourceEntry(DoubleLogic);
+            this.ForEachStringResourceEntry(this.DoubleLogic);
         }
     }
 }

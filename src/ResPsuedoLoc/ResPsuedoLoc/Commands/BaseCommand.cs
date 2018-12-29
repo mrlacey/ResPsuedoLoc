@@ -23,6 +23,11 @@ namespace ResPsuedoLoc.Commands
             this.package = package ?? throw new ArgumentNullException(nameof(package));
         }
 
+        protected BaseCommand()
+        {
+            // For testing use only
+        }
+
         private Microsoft.VisualStudio.Shell.IAsyncServiceProvider ServiceProvider
         {
             get

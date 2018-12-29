@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace ResPsuedoLoc.Commands
 {
-    public sealed class PaddingCommand : BaseCommand
+    public sealed class PaddingCommand : ReversableCommand
     {
         public const int CommandId = 4126;
 #pragma warning disable SA1401 // Fields must be private
@@ -31,10 +32,17 @@ namespace ResPsuedoLoc.Commands
             commandService.AddCommand(menuItem);
         }
 
-        public static PaddingCommand Instance
+        private PaddingCommand()
+            : base()
         {
-            get;
-            private set;
+            // For testing use only
+        }
+
+        public static PaddingCommand Instance { get; private set; }
+
+        public static PaddingCommand CreateForTesting()
+        {
+            return new PaddingCommand();
         }
 
         public static async Task InitializeAsync(AsyncPackage package)
@@ -45,15 +53,35 @@ namespace ResPsuedoLoc.Commands
             Instance = new PaddingCommand(package, commandService);
         }
 
-        public static string PaddingLogic(string input)
+        public static bool IsPadded(string input)
         {
-            if (input.Length < 2)
+            if (input.Length < 3)
+            {
+                return false;
+            }
+            else
+            {
+                if (SurroundCommand.IsSurrounded(input))
+                {
+                    input = SurroundCommand.RemoveSurrounds(input);
+                }
+
+                var countOfLetters = input.Count(char.IsLetter);
+                var countOfSeparators = input.Count(i => i == Separator);
+
+                return countOfSeparators >= (countOfLetters / 2);
+            }
+        }
+
+        public static string PaddingLogic(string input, ToggleMode toggleMode)
+        {
+            if (input.Length < 2 || toggleMode == ToggleMode.NotSet)
             {
                 return input;
             }
             else if (input.Length == 2)
             {
-                if (char.IsLetter(input[0]) && char.IsLetter(input[1]))
+                if (toggleMode == ToggleMode.Apply && char.IsLetter(input[0]) && char.IsLetter(input[1]))
                 {
                     return input.Insert(1, SeparatorStr);
                 }
@@ -64,75 +92,183 @@ namespace ResPsuedoLoc.Commands
             }
             else
             {
-                var result = new StringBuilder();
-
-                var countOfLetters = input.Count(i => char.IsLetter(i));
-                var countOfSeparators = input.Count(i => i == Separator);
-
-                var adding = countOfSeparators < (countOfLetters / 2);
-
-                if (input.Length < 2)
+                if (toggleMode == ToggleMode.Apply)
                 {
-                    result.Append(input);
-                }
-                else if (input.Length == 2)
-                {
-                    if (char.IsLetter(input[0]) && char.IsLetter(input[1]))
+                    if (IsPadded(input))
                     {
-                        result.Append(input[0]);
-                        result.Append(Separator);
-                        result.Append(input[1]);
+                        return input;
                     }
                     else
                     {
-                        result.Append(input);
+                        return AddPadding(input);
                     }
                 }
                 else
                 {
-                    var words = input.Split(' ');
-
-                    foreach (var word in words)
+                    if (IsPadded(input))
                     {
-                        if (word.Length < 2)
+                        return RemovePadding(input);
+                    }
+                    else
+                    {
+                        return input;
+                    }
+                }
+            }
+        }
+
+        public static string AddPadding(string input)
+        {
+            var surrounded = SurroundCommand.IsSurrounded(input);
+
+            var stringToAdjust = input;
+
+            if (surrounded)
+            {
+                stringToAdjust = SurroundCommand.RemoveSurrounds(input);
+            }
+
+            var result = new StringBuilder();
+
+            if (stringToAdjust.Length < 2)
+            {
+                result.Append(stringToAdjust);
+            }
+            else if (stringToAdjust.Length == 2)
+            {
+                if (char.IsLetter(stringToAdjust[0]) && char.IsLetter(stringToAdjust[1]))
+                {
+                    result.Append(stringToAdjust[0]);
+                    result.Append(Separator);
+                    result.Append(stringToAdjust[1]);
+                }
+                else
+                {
+                    result.Append(stringToAdjust);
+                }
+            }
+            else
+            {
+                var words = stringToAdjust.Split(' ');
+
+                foreach (var word in words)
+                {
+                    if (word.Length < 2)
+                    {
+                        result.Append(word);
+                    }
+                    else
+                    {
+                        var paddedWord = new StringBuilder();
+
+                        foreach (var character in word.GetGraphemeClusters())
                         {
-                            result.Append(word);
-                        }
-                        else if (adding)
-                        {
-                            var paddedWord = new StringBuilder();
-
-                            foreach (var character in word.GetGraphemeClusters())
-                            {
-                                paddedWord.Append($"{character}{Separator}");
-                            }
-
-                            result.Append(paddedWord.ToString().TrimEnd(Separator));
-                        }
-                        else
-                        {
-                            var tempWord = word.Replace("---", " ");
-
-                            tempWord = tempWord.Replace(SeparatorStr, string.Empty);
-
-                            result.Append(tempWord.Replace(" ", SeparatorStr));
+                            paddedWord.Append($"{character}{Separator}");
                         }
 
-                        result.Append(' ');
+                        result.Append(paddedWord.ToString().TrimEnd(Separator));
                     }
 
-                    result.Remove(result.Length - 1, 1);
+                    result.Append(' ');
                 }
 
+                result.Remove(result.Length - 1, 1);
+            }
+
+            if (surrounded)
+            {
+                return SurroundCommand.SurroundLogic(result.ToString(), ToggleMode.Apply);
+            }
+            else
+            {
                 return result.ToString();
             }
+        }
+
+        public static string RemovePadding(string input)
+        {
+            var surrounded = SurroundCommand.IsSurrounded(input);
+
+            var stringToAdjust = input;
+
+            if (surrounded)
+            {
+                stringToAdjust = SurroundCommand.RemoveSurrounds(input);
+            }
+
+            var result = new StringBuilder();
+
+            if (stringToAdjust.Length < 3)
+            {
+                result.Append(input);
+            }
+            else
+            {
+                var words = stringToAdjust.Split(' ');
+
+                foreach (var word in words)
+                {
+                    if (word.Length < 2)
+                    {
+                        result.Append(word);
+                    }
+                    else
+                    {
+                        var tempWord = word.Replace("---", " ");
+
+                        tempWord = tempWord.Replace(SeparatorStr, string.Empty);
+
+                        result.Append(tempWord.Replace(" ", SeparatorStr));
+                    }
+
+                    result.Append(' ');
+                }
+
+                result.Remove(result.Length - 1, 1);
+            }
+
+            if (surrounded)
+            {
+                return SurroundCommand.SurroundLogic(result.ToString(), ToggleMode.Apply);
+            }
+            else
+            {
+                return result.ToString();
+            }
+        }
+
+        public string PaddingLogic(string input)
+        {
+            if (this.Mode == ToggleMode.NotSet)
+            {
+                this.Mode = this.GetToggleMode(input);
+            }
+
+            return PaddingCommand.PaddingLogic(input, this.Mode);
+        }
+
+        public override List<string> TestActingOnMultipleStrings(List<string> inputs)
+        {
+            var result = new List<string>();
+
+            foreach (var input in inputs)
+            {
+                result.Add(this.PaddingLogic(input));
+            }
+
+            return result;
+        }
+
+        internal new ToggleMode GetToggleMode(string input)
+        {
+            return PaddingCommand.IsPadded(input) ? ToggleMode.Reverse : ToggleMode.Apply;
         }
 
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            this.ForEachStringResourceEntry(PaddingLogic);
+            this.ForEachStringResourceEntry(this.PaddingLogic);
         }
     }
 }
