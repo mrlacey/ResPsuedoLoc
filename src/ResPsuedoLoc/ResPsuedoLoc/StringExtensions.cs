@@ -1,4 +1,4 @@
-﻿// <copyright file="StringExtentions.cs" company="Matt Lacey Ltd.">
+﻿// <copyright file="StringExtensions.cs" company="Matt Lacey Ltd.">
 // Copyright (c) Matt Lacey Ltd. All rights reserved.
 // </copyright>
 
@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace ResPsuedoLoc
 {
-    public static class StringExtentions
+    public static class StringExtensions
     {
         // https://stackoverflow.com/a/15111719/1755
         public static IEnumerable<string> GetGraphemeClusters(this string s)
