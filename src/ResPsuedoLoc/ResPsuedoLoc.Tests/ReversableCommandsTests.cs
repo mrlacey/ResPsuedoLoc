@@ -11,10 +11,6 @@ namespace ResPsuedoLoc.Tests
     [TestClass]
     public class ReversableCommandsTests
     {
-        // TODO: Add these tests
-        // Remove from subsequent if first has
-        // add to subsequent if first doesn't have
-        // repeat for each of the options & with surround too
         [TestMethod]
         public void Surrounded_RemovesWhereHave()
         {
