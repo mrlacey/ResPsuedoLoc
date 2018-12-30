@@ -1,4 +1,4 @@
-﻿// <copyright file="ListOfStringAssert.cs" company="Matt Lacey Ltd.">
+﻿// <copyright file="AssertExtensions.cs" company="Matt Lacey Ltd.">
 // Copyright (c) Matt Lacey Ltd. All rights reserved.
 // </copyright>
 
@@ -8,9 +8,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ResPsuedoLoc.Tests
 {
-    public static class ListOfStringAssert
+    public static class AssertExtensions
     {
-        public static void AreEqual(List<string> expected, List<string> actual)
+       public static void StringListsAreEqual(this Assert assert, List<string> expected, List<string> actual)
         {
             Assert.AreEqual(expected.Count, actual.Count);
 

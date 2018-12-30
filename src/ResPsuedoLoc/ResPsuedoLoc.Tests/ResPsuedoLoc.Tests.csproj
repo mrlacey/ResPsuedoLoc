@@ -50,7 +50,7 @@
     <Compile Include="DoubleTests.cs" />
     <Compile Include="InvertCaseTests.cs" />
     <Compile Include="L337Tests.cs" />
-    <Compile Include="ListOfStringAssert.cs" />
+    <Compile Include="AssertExtensions.cs" />
     <Compile Include="PaddingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReversableCommandsTests.cs" />

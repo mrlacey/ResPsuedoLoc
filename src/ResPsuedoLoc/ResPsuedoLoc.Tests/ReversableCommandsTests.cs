@@ -22,7 +22,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "surrounded", "not surrounded", "also surrounded" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "[! not surrounded !]", "[! surrounded !]", "[! also not surrounded !]" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "Doubled", "not doubled", "Also doubled" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -64,7 +64,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "nnoott ddoouubblleedd", "DDoouubblleedd", "aallssoo nnoott ddoouubblleedd" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -78,7 +78,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "[! Doubled !]", "[! not doubled !]", "[! Also doubled !]" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "[! nnoott ddoouubblleedd !]", "[! DDoouubblleedd !]", "[! aallssoo nnoott ddoouubblleedd !]" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -106,7 +106,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "Padded", "not padded", "Also padded" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -120,7 +120,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "n-o-t p-a-d-d-e-d", "P-a-d-d-e-d", "a-l-s-o n-o-t p-a-d-d-e-d" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -134,7 +134,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "[! Padded !]", "[! not padded !]", "[! Also padded !]" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -148,7 +148,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "[! n-o-t p-a-d-d-e-d !]", "[! P-a-d-d-e-d !]", "[! a-l-s-o n-o-t p-a-d-d-e-d !]" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -167,7 +167,7 @@ namespace ResPsuedoLoc.Tests
 
             var expected = new List<string> { "has", "does not have", "Also has" };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -191,7 +191,7 @@ namespace ResPsuedoLoc.Tests
                 "a\u0308\u0324l\u0308\u0324s\u0308\u0324o\u0308\u0324 d\u0308\u0324o\u0308\u0324e\u0308\u0324s\u0308\u0324 n\u0308\u0324o\u0308\u0324t\u0308\u0324 h\u0308\u0324a\u0308\u0324v\u0308\u0324e\u0308\u0324"
             };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -215,7 +215,7 @@ namespace ResPsuedoLoc.Tests
                 "[! Also has !]"
             };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -239,7 +239,7 @@ namespace ResPsuedoLoc.Tests
                 "[! a\u0308\u0324l\u0308\u0324s\u0308\u0324o\u0308\u0324 d\u0308\u0324o\u0308\u0324e\u0308\u0324s\u0308\u0324 n\u0308\u0324o\u0308\u0324t\u0308\u0324 h\u0308\u0324a\u0308\u0324v\u0308\u0324e\u0308\u0324 !]"
             };
 
-            ListOfStringAssert.AreEqual(expected, actual);
+            Assert.That.StringListsAreEqual(expected, actual);
         }
     }
 }
