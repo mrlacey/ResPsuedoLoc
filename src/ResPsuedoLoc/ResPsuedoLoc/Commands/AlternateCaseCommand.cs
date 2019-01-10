@@ -32,7 +32,7 @@ namespace ResPsuedoLoc.Commands
         {
             // Verify the current thread is the UI thread - the call to AddCommand in DoubleCommand's constructor requires
             // the UI thread.
-            ThreadHelper.ThrowIfNotOnUIThread();
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             var commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
             Instance = new AlternateCaseCommand(package, commandService);
