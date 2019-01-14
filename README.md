@@ -1,10 +1,11 @@
 # Resource Pseudo-Localizer
 
+[![Build status](https://ci.appveyor.com/api/projects/status/kethy80vjrqfsucc?svg=true)](https://ci.appveyor.com/project/mrlacey/respsuedoloc)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 Download the extension from the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=MattLaceyLtd.ResourcePseudoLocalizer)
 or get the
 [CI build](http://vsixgallery.com/extension/ResPsuedoLoc.fb9c5e68-fb3b-44f4-9412-717109dc3ba9/)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/kethy80vjrqfsucc?svg=true)](https://ci.appveyor.com/project/mrlacey/respsuedoloc)
 
 A Visual Studio Extention that provides a quick way to check that all string resources are localized by pseudo-localizing them.
 
@@ -18,6 +19,3 @@ Options can be combined and toggled by repeating the action.
 
 See the [change log](CHANGELOG.md) for changes and road map.
 
-## License
-
-[MIT](LICENSE)
