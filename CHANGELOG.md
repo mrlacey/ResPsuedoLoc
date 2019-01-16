@@ -2,7 +2,7 @@
 
 - [x] VS 2019 support
 - [x] Fix bug affecting menu display
-- [ ] Handle RESX files containing more than just strings
+- [x] Handle RESX files containing more than just strings
 
 Features that have a checkmark are complete and available for
 download in the

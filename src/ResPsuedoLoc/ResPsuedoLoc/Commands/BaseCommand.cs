@@ -62,9 +62,19 @@ namespace ResPsuedoLoc.Commands
             {
                 System.Diagnostics.Debug.WriteLine(element);
 
-                var valueElement = element.GetElementsByTagName("value").Item(0);
+                var dataType = element.GetAttribute("type");
 
-                valueElement.InnerText = doThis(valueElement.InnerText);
+                // data elements don't include the 'type' attribute if the type is string - which is all we're interested in
+                if (string.IsNullOrWhiteSpace(dataType))
+                {
+                    var valueElement = element.GetElementsByTagName("value").Item(0);
+
+                    // This shouldn't be necessary if the res file is valid - but: belt&braces
+                    if (valueElement != null)
+                    {
+                        valueElement.InnerText = doThis(valueElement.InnerText);
+                    }
+                }
             }
 
             xdoc.Save(itemFullPath);
