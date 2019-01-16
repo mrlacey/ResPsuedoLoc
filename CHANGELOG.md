@@ -1,8 +1,6 @@
 # Road map
 
-- [x] VS 2019 support
-- [x] Fix bug affecting menu display
-- [x] Handle RESX files containing more than just strings
+- [ ] (Open to suggestions...)[https://github.com/mrlacey/ResPsuedoLoc/issues/new]
 
 Features that have a checkmark are complete and available for
 download in the
@@ -12,6 +10,13 @@ download in the
 
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
+
+## 2.1
+
+- [x] VS 2019 support
+- [x] Fix bug affecting menu display
+- [x] Handle RESX files containing more than just strings
+
 
 ## 2.0
 
