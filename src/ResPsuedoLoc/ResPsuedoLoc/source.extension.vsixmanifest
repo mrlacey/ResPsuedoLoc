@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="ResPsuedoLoc.fb9c5e68-fb3b-44f4-9412-717109dc3ba9" Version="2.1" Language="en-US" Publisher="Matt Lacey Ltd." />
+        <Identity Id="ResPsuedoLoc.fb9c5e68-fb3b-44f4-9412-717109dc3ba9" Version="2.2" Language="en-US" Publisher="Matt Lacey" />
         <DisplayName>Resource Pseudo Localizer</DisplayName>
         <Description xml:space="preserve">Quickly and easily convert the values in RESX and RESW files to their pseudo localized versions to detect any text that doesn't come from a resource file.</Description>
         <MoreInfo>https://github.com/mrlacey/ResPsuedoLoc</MoreInfo>

@@ -11,6 +11,10 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
+## 2.2
+
+- [x] Updated digital signature
+
 ## 2.1
 
 - [x] VS 2019 support
