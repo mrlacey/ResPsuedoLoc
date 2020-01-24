@@ -18,4 +18,3 @@ It works with RESX and RESW files. Right click on the resource file and select t
 Options can be combined and toggled by repeating the action.
 
 See the [change log](CHANGELOG.md) for changes and road map.
-
