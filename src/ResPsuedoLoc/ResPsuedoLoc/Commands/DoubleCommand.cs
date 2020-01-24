@@ -16,7 +16,7 @@ namespace ResPsuedoLoc.Commands
     {
         public const int CommandId = 4129;
 
-        private DoubleCommand(AsyncPackage package, OleMenuCommandService commandService)
+        private DoubleCommand(PsuedoLocPackage package, OleMenuCommandService commandService)
             : base(package)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -42,7 +42,7 @@ namespace ResPsuedoLoc.Commands
             return new DoubleCommand();
         }
 
-        public static async Task InitializeAsync(AsyncPackage package)
+        public static async Task InitializeAsync(PsuedoLocPackage package)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 

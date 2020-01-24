@@ -20,7 +20,7 @@ namespace ResPsuedoLoc.Commands
         public static string SeparatorStr = Separator.ToString();
 #pragma warning restore SA1401 // Fields must be private
 
-        private PaddingCommand(AsyncPackage package, OleMenuCommandService commandService)
+        private PaddingCommand(PsuedoLocPackage package, OleMenuCommandService commandService)
             : base(package)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -46,7 +46,7 @@ namespace ResPsuedoLoc.Commands
             return new PaddingCommand();
         }
 
-        public static async Task InitializeAsync(AsyncPackage package)
+        public static async Task InitializeAsync(PsuedoLocPackage package)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 

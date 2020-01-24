@@ -12,7 +12,7 @@ namespace ResPsuedoLoc.Commands
     /// </summary>
     public class ReversableCommand : BaseCommand
     {
-        protected ReversableCommand(AsyncPackage package)
+        protected ReversableCommand(PsuedoLocPackage package)
             : base(package)
         {
         }

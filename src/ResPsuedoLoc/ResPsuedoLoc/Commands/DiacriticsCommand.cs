@@ -20,7 +20,7 @@ namespace ResPsuedoLoc.Commands
         private static readonly char[] TopOptions = new[] { '\u0308', '\u033F', '\u0306', '\u0346', '\u030A', '\u0302', '\u0300', '\u0301', '\u0309' };
         private static readonly char[] BottomOptions = new[] { '\u0324', '\u0347', '\u032E', '\u033A', '\u0325', '\u032D', '\u0316', '\u0317', '\u0321' };
 
-        private DiacriticsCommand(AsyncPackage package, OleMenuCommandService commandService)
+        private DiacriticsCommand(PsuedoLocPackage package, OleMenuCommandService commandService)
             : base(package)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -46,7 +46,7 @@ namespace ResPsuedoLoc.Commands
             return new DiacriticsCommand();
         }
 
-        public static async Task InitializeAsync(AsyncPackage package)
+        public static async Task InitializeAsync(PsuedoLocPackage package)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 

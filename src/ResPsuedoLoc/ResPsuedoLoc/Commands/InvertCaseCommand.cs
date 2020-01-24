@@ -14,7 +14,7 @@ namespace ResPsuedoLoc.Commands
     {
         public const int CommandId = 4125;
 
-        private InvertCaseCommand(AsyncPackage package, OleMenuCommandService commandService)
+        private InvertCaseCommand(PsuedoLocPackage package, OleMenuCommandService commandService)
             : base(package)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -33,7 +33,7 @@ namespace ResPsuedoLoc.Commands
             private set;
         }
 
-        public static async Task InitializeAsync(AsyncPackage package)
+        public static async Task InitializeAsync(PsuedoLocPackage package)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 

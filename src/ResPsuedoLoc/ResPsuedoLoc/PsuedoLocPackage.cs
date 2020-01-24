@@ -17,6 +17,7 @@ namespace ResPsuedoLoc
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "3.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideOptionPage(typeof(OptionsGrid), "Resource Pseudo-Localizer", "General", 0, 0, true)]
     [Guid(PsuedoLocPackage.PackageGuidString)]
     [ProvideUIContextRule(UiContextSupportedFiles, name: "Supported Files", expression: "RESX | RESW", termNames: new[] { "resx", "resw" }, termValues: new[] { "HierSingleSelectionName:.resx$", "HierSingleSelectionName:.resw$" })]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
@@ -34,6 +35,14 @@ namespace ResPsuedoLoc
             // any Visual Studio service because at this point the package object is created but
             // not sited yet inside Visual Studio environment. The place to do all the other
             // initialization is the Initialize method.
+        }
+
+        public OptionsGrid Options
+        {
+            get
+            {
+                return (OptionsGrid)this.GetDialogPage(typeof(OptionsGrid));
+            }
         }
 
         /// <summary>

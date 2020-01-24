@@ -17,7 +17,7 @@ namespace ResPsuedoLoc.Commands
         private const string SurroundStart = "[! ";
         private const string SurroundEnd = " !]";
 
-        private SurroundCommand(AsyncPackage package, OleMenuCommandService commandService)
+        private SurroundCommand(PsuedoLocPackage package, OleMenuCommandService commandService)
             : base(package)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -43,7 +43,7 @@ namespace ResPsuedoLoc.Commands
             return new SurroundCommand();
         }
 
-        public static async Task InitializeAsync(AsyncPackage package)
+        public static async Task InitializeAsync(PsuedoLocPackage package)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 

@@ -15,10 +15,10 @@ namespace ResPsuedoLoc.Commands
     public class BaseCommand
     {
 #pragma warning disable SA1401 // Fields must be private
-        protected readonly AsyncPackage package;
+        protected readonly PsuedoLocPackage package;
 #pragma warning restore SA1401 // Fields must be private
 
-        public BaseCommand(AsyncPackage package)
+        public BaseCommand(PsuedoLocPackage package)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
         }
@@ -113,9 +113,12 @@ namespace ResPsuedoLoc.Commands
 
             try
             {
-                if (!File.Exists(backupFileName))
+                if (this.package.Options.CreateBackup)
                 {
-                    File.Copy(itemFullPath, backupFileName);
+                    if (!File.Exists(backupFileName))
+                    {
+                        File.Copy(itemFullPath, backupFileName);
+                    }
                 }
             }
             catch (Exception exc)

@@ -58,6 +58,9 @@
     <Compile Include="Commands\AlternateCaseCommand.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\L337Command.cs" />
+    <Compile Include="OptionsGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Commands\ReverseCommand.cs" />
     <Compile Include="Commands\InvertCaseCommand.cs" />
     <Compile Include="Commands\PaddingCommand.cs" />

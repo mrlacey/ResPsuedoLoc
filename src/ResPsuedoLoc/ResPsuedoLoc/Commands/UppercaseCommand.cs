@@ -13,7 +13,7 @@ namespace ResPsuedoLoc.Commands
     {
         public const int CommandId = 4130;
 
-        private UppercaseCommand(AsyncPackage package, OleMenuCommandService commandService)
+        private UppercaseCommand(PsuedoLocPackage package, OleMenuCommandService commandService)
             : base(package)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -28,7 +28,7 @@ namespace ResPsuedoLoc.Commands
 
         public static UppercaseCommand Instance { get; private set; }
 
-        public static async Task InitializeAsync(AsyncPackage package)
+        public static async Task InitializeAsync(PsuedoLocPackage package)
         {
             // Verify the current thread is the UI thread - the call to AddCommand in DoubleCommand's constructor requires
             // the UI thread.

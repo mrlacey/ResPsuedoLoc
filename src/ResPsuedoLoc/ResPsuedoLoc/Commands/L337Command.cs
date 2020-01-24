@@ -14,7 +14,7 @@ namespace ResPsuedoLoc.Commands
     {
         public const int CommandId = 4132;
 
-        private L337Command(AsyncPackage package, OleMenuCommandService commandService)
+        private L337Command(PsuedoLocPackage package, OleMenuCommandService commandService)
             : base(package)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -29,7 +29,7 @@ namespace ResPsuedoLoc.Commands
 
         public static L337Command Instance { get; private set; }
 
-        public static async Task InitializeAsync(AsyncPackage package)
+        public static async Task InitializeAsync(PsuedoLocPackage package)
         {
             // Verify the current thread is the UI thread - the call to AddCommand in DoubleCommand's constructor requires
             // the UI thread.
