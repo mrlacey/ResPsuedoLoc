@@ -55,6 +55,8 @@ namespace ResPsuedoLoc.Commands
 
             ((IVsProject)selectedHierarchy).GetMkDocument(itemId, out string itemFullPath);
 
+            this.CreateBackupFileIfNoneExists(itemFullPath);
+
             var xdoc = new XmlDocument();
             xdoc.Load(itemFullPath);
 
@@ -102,6 +104,23 @@ namespace ResPsuedoLoc.Commands
                 {
                     menuCmd.Visible = menuCmd.Enabled = true;
                 }
+            }
+        }
+
+        private void CreateBackupFileIfNoneExists(string itemFullPath)
+        {
+            var backupFileName = $"{itemFullPath}.bak";
+
+            try
+            {
+                if (!File.Exists(backupFileName))
+                {
+                    File.Copy(itemFullPath, backupFileName);
+                }
+            }
+            catch (Exception exc)
+            {
+                System.Diagnostics.Debug.WriteLine(exc);
             }
         }
 
