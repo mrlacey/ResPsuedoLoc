@@ -11,6 +11,10 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
+## 3.0
+
+- [x] Create a backup of the resource file before converting it for the first time.
+
 ## 2.2
 
 - [x] Updated digital signature
