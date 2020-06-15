@@ -80,6 +80,10 @@
       <Link>Resources\LICENSE</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Resources\ResPsuedoLoc-Logo.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Key.snk" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
@@ -89,7 +93,6 @@
   <ItemGroup>
     <Content Include="Resources\1WayPsuedoLocCommands.png" />
     <Content Include="Resources\PsuedoLocCommands.png" />
-    <Content Include="Resources\PsuedoLocPackage.ico" />
     <VSCTCompile Include="PsuedoLocPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
