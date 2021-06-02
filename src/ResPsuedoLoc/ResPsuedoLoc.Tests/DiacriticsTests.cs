@@ -273,5 +273,21 @@ namespace ResPsuedoLoc.Tests
 
             Assert.IsFalse(actual);
         }
+
+        [TestMethod]
+        public void TryRemovalWhenHasOnlyOneOfAddedDiacritics_First()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u033F", ToggleMode.Reverse);
+
+            Assert.AreEqual("a\u033F", actual);
+        }
+
+        [TestMethod]
+        public void TryRemovalWhenHasOnlyOneOfAddedDiacritics_Second()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u0347", ToggleMode.Reverse);
+
+            Assert.AreEqual("a\u0347", actual);
+        }
     }
 }
