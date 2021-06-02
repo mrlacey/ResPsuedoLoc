@@ -241,5 +241,37 @@ namespace ResPsuedoLoc.Tests
             Assert.AreEqual("м\u030A\u0325а\u030A\u0325т\u030A\u0325т\u030A\u0325", actual);
             Assert.AreEqual("м̥̊а̥̊т̥̊т̥̊", actual);
         }
+
+        [TestMethod]
+        public void CanDetectWhenAddedToNonLetters()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("{\u0306\u032E}\u0306\u032E");
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void CanDetectWhenNotAddedToNonLetters()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("{}");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void CanDetectWhenAddedToNumbers()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("1\u0306\u032E2\u0306\u032E");
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void CanDetectWhenNotAddedToNumbers()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("12");
+
+            Assert.IsFalse(actual);
+        }
     }
 }
