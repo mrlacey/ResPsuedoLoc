@@ -20,7 +20,6 @@ namespace ResPsuedoLoc
     [ProvideOptionPage(typeof(OptionsGrid), "Resource Pseudo-Localizer", "General", 0, 0, true)]
     [Guid(PsuedoLocPackage.PackageGuidString)]
     [ProvideUIContextRule(UiContextSupportedFiles, name: "Supported Files", expression: "RESX | RESW", termNames: new[] { "resx", "resw" }, termValues: new[] { "HierSingleSelectionName:.resx$", "HierSingleSelectionName:.resw$" })]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class PsuedoLocPackage : AsyncPackage
     {
         public const string PackageGuidString = "13097f34-2ebd-4ccc-bb05-bafad28a5c3b";
