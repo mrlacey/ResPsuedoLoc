@@ -56,7 +56,7 @@ namespace ResPsuedoLoc.Commands
 
         public static bool IsPadded(string input)
         {
-            if (input.Length < 3)
+            if (string.IsNullOrEmpty(input) || input.Length < 3)
             {
                 return false;
             }

@@ -53,7 +53,7 @@ namespace ResPsuedoLoc.Commands
 
         public static string SurroundLogic(string input, ToggleMode toggleMode)
         {
-            if (toggleMode == ToggleMode.NotSet)
+            if (string.IsNullOrWhiteSpace(input) || toggleMode == ToggleMode.NotSet)
             {
                 return input;
             }

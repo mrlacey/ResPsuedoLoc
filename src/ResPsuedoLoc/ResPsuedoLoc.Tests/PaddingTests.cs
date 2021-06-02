@@ -271,5 +271,40 @@ namespace ResPsuedoLoc.Tests
 
             Assert.AreEqual(once, twice);
         }
+
+        [TestMethod]
+        public void IsPadded_IsFalse_TwoCharString()
+        {
+            var actual = PaddingCommand.IsPadded("12");
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsPadded_IsFalse_OneCharString()
+        {
+            var actual = PaddingCommand.IsPadded("1");
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsPadded_IsFalse_EmptyString()
+        {
+            var actual = PaddingCommand.IsPadded(string.Empty);
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsPadded_IsFalse_Null()
+        {
+            var actual = PaddingCommand.IsPadded(null);
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void CanCallRemovePaddingForShortUnpaddedStrings()
+        {
+            var actual = PaddingCommand.RemovePadding("12");
+            Assert.AreEqual("12", actual);
+        }
     }
 }

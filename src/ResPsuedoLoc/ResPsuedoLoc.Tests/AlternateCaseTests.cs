@@ -55,5 +55,29 @@ namespace ResPsuedoLoc.Tests
 
             Assert.AreEqual("МаТт", actual);
         }
+
+        [TestMethod]
+        public void CanHandleNull()
+        {
+            var actual = AlternateCaseCommand.AlternateCaseLogic(null);
+
+            Assert.AreEqual(null, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleEmptyString()
+        {
+            var actual = AlternateCaseCommand.AlternateCaseLogic(string.Empty);
+
+            Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhiteSpace()
+        {
+            var actual = AlternateCaseCommand.AlternateCaseLogic(" ");
+
+            Assert.AreEqual(" ", actual);
+        }
     }
 }

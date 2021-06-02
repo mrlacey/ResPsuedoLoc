@@ -35,5 +35,29 @@ namespace ResPsuedoLoc.Tests
 
             Assert.AreEqual("Xxxx", actual);
         }
+
+        [TestMethod]
+        public void CanHandleNull()
+        {
+            var actual = XxxxxCommand.XxxxxLogic(null);
+
+            Assert.AreEqual(null, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleEmptyString()
+        {
+            var actual = XxxxxCommand.XxxxxLogic(string.Empty);
+
+            Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhiteSpace()
+        {
+            var actual = XxxxxCommand.XxxxxLogic(" ");
+
+            Assert.AreEqual(" ", actual);
+        }
     }
 }
