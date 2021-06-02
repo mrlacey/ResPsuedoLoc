@@ -117,5 +117,13 @@ namespace ResPsuedoLoc.Tests
 
             Assert.AreEqual("ммаатттт", actual);
         }
+
+        [TestMethod]
+        public void NonLettersArentDoubled()
+        {
+            var actual = DoubleCommand.DoubleLogic("1234$%^&", ToggleMode.Apply);
+
+            Assert.AreEqual("1234$%^&", actual);
+        }
     }
 }
