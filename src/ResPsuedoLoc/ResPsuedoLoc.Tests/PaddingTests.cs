@@ -271,5 +271,89 @@ namespace ResPsuedoLoc.Tests
 
             Assert.AreEqual(once, twice);
         }
+
+        [TestMethod]
+        public void IsPadded_IsFalse_TwoCharString()
+        {
+            var actual = PaddingCommand.IsPadded("12");
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsPadded_IsFalse_OneCharString()
+        {
+            var actual = PaddingCommand.IsPadded("1");
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsPadded_IsFalse_EmptyString()
+        {
+            var actual = PaddingCommand.IsPadded(string.Empty);
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsPadded_IsFalse_Null()
+        {
+            var actual = PaddingCommand.IsPadded(null);
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void CanCallRemovePaddingForShortUnpaddedStrings()
+        {
+            var actual = PaddingCommand.RemovePadding("12");
+            Assert.AreEqual("12", actual);
+        }
+
+        [TestMethod]
+        public void AddPadding_Null()
+        {
+            var actual = PaddingCommand.AddPadding(null);
+            Assert.AreEqual(null, actual);
+        }
+
+        [TestMethod]
+        public void AddPadding_EmptyString()
+        {
+            var actual = PaddingCommand.AddPadding(string.Empty);
+            Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void AddPadding_WhiteSpace()
+        {
+            var actual = PaddingCommand.AddPadding(" ");
+            Assert.AreEqual(" ", actual);
+        }
+
+        [TestMethod]
+        public void AddPadding_OneCharString()
+        {
+            var actual = PaddingCommand.AddPadding("1");
+            Assert.AreEqual("1", actual);
+        }
+
+        [TestMethod]
+        public void AddPadding_TwoCharString_numeric()
+        {
+            var actual = PaddingCommand.AddPadding("12");
+            Assert.AreEqual("12", actual);
+        }
+
+        [TestMethod]
+        public void AddPadding_TwoCharString_alpha()
+        {
+            var actual = PaddingCommand.AddPadding("AB");
+            Assert.AreEqual("A-B", actual);
+        }
+
+        [TestMethod]
+        public void AddPadding_ThreeCharString()
+        {
+            var actual = PaddingCommand.AddPadding("123");
+            Assert.AreEqual("1-2-3", actual);
+        }
     }
 }

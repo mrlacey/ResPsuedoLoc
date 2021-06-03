@@ -96,21 +96,19 @@ namespace ResPsuedoLoc.Commands
                 stringToAdjust = SurroundCommand.RemoveSurrounds(input);
             }
 
-            var letters = stringToAdjust.GetGraphemeClusters().ToList();
+            var textElements = stringToAdjust.GetGraphemeClusters().ToList();
 
-            var optionsIndex = letters.Count % TopOptions.Length;
-
-            if (letters.Count > 0)
+            if (textElements.Count > 0)
             {
-                for (var i = 0; i < letters.Count; i++)
+                for (var i = 0; i < textElements.Count; i++)
                 {
-                    // Find the first letter with added diacritics
-                    if (char.IsLetter(letters[i][0]) && letters[i].Length > 2)
+                    // Find the first text element with added diacritics
+                    if (textElements[i].Length > 2)
                     {
                         // Check that the same above and below diacritics are added as we would
                         // Don't check for the expected diacritics based on string length as combinations of actions can change this
-                        var topAddition = letters[i][letters[i].Length - 2];
-                        var bottomAddition = letters[i][letters[i].Length - 1];
+                        var topAddition = textElements[i][textElements[i].Length - 2];
+                        var bottomAddition = textElements[i][textElements[i].Length - 1];
 
                         var topIndex = TopOptions.ToList().IndexOf(topAddition);
                         var bottomIndex = BottomOptions.ToList().IndexOf(bottomAddition);
@@ -118,13 +116,9 @@ namespace ResPsuedoLoc.Commands
                         return topIndex >= 0 && topIndex == bottomIndex;
                     }
                 }
+            }
 
-                return false;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public static string AddDiacritics(string input)

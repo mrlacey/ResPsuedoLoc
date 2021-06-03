@@ -56,7 +56,7 @@ namespace ResPsuedoLoc.Commands
 
         public static bool IsPadded(string input)
         {
-            if (input.Length < 3)
+            if (string.IsNullOrEmpty(input) || input.Length < 3)
             {
                 return false;
             }
@@ -120,6 +120,11 @@ namespace ResPsuedoLoc.Commands
 
         public static string AddPadding(string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return input;
+            }
+
             var surrounded = SurroundCommand.IsSurrounded(input);
 
             var stringToAdjust = input;

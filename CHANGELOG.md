@@ -11,6 +11,14 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
+## 3.2
+
+- [x] Improve handling of strings that contain non-alphanumeric characters.
+
+## 3.1
+
+- [x] Make creating of backup optional.
+
 ## 3.0
 
 - [x] Create a backup of the resource file before converting it for the first time.

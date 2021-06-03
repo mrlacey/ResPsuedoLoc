@@ -241,5 +241,101 @@ namespace ResPsuedoLoc.Tests
             Assert.AreEqual("м\u030A\u0325а\u030A\u0325т\u030A\u0325т\u030A\u0325", actual);
             Assert.AreEqual("м̥̊а̥̊т̥̊т̥̊", actual);
         }
+
+        [TestMethod]
+        public void CanDetectWhenAddedToNonLetters()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("{\u0306\u032E}\u0306\u032E");
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void CanDetectWhenNotAddedToNonLetters()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("{}");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void CanDetectWhenAddedToNumbers()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("1\u0306\u032E2\u0306\u032E");
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void CanDetectWhenNotAddedToNumbers()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("12");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void TryRemovalWhenHasOnlyOneOfAddedDiacritics_First()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u033F", ToggleMode.Reverse);
+
+            Assert.AreEqual("a\u033F", actual);
+        }
+
+        [TestMethod]
+        public void TryRemovalWhenHasOnlyOneOfAddedDiacritics_Second()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("a\u0347", ToggleMode.Reverse);
+
+            Assert.AreEqual("a\u0347", actual);
+        }
+
+        [TestMethod]
+        public void CanHandleNull()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic(null, ToggleMode.Apply);
+
+            Assert.AreEqual(null, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleEmptyString()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic(string.Empty, ToggleMode.Apply);
+
+            Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhiteSpace()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic(" ", ToggleMode.Apply);
+
+            Assert.AreEqual(" ", actual);
+        }
+
+        [TestMethod]
+        public void CanHandleToggleModeNotSet()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("Something", ToggleMode.NotSet);
+
+            Assert.AreEqual("Something", actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhenFirstCombiningDiacriticIsNotOneUsedHere()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("1\u033E\u0347");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhenSecondCombiningDiacriticIsNotOneUsedHere()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("1\u033F\u033E");
+
+            Assert.IsFalse(actual);
+        }
     }
 }

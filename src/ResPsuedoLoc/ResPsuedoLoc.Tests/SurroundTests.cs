@@ -85,5 +85,37 @@ namespace ResPsuedoLoc.Tests
 
             Assert.AreEqual(once, twice);
         }
+
+        [TestMethod]
+        public void CanHandleNull()
+        {
+            var actual = SurroundCommand.SurroundLogic(null, ToggleMode.Apply);
+
+            Assert.AreEqual(null, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleEmptyString()
+        {
+            var actual = SurroundCommand.SurroundLogic(string.Empty, ToggleMode.Apply);
+
+            Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhiteSpace()
+        {
+            var actual = SurroundCommand.SurroundLogic(" ", ToggleMode.Apply);
+
+            Assert.AreEqual(" ", actual);
+        }
+
+        [TestMethod]
+        public void CanHandleToggleModeNotSet()
+        {
+            var actual = SurroundCommand.SurroundLogic("Something", ToggleMode.NotSet);
+
+            Assert.AreEqual("Something", actual);
+        }
     }
 }

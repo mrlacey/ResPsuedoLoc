@@ -29,5 +29,29 @@ namespace ResPsuedoLoc.Tests
 
             Assert.AreEqual("48(d3f6#1j{lmn0p9r57uvw%y2.48(D3F6#1J{LMN0P9R57UVW%Y2", actual);
         }
+
+        [TestMethod]
+        public void CanHandleNull()
+        {
+            var actual = L337Command.L337Logic(null);
+
+            Assert.AreEqual(null, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleEmptyString()
+        {
+            var actual = L337Command.L337Logic(string.Empty);
+
+            Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhiteSpace()
+        {
+            var actual = L337Command.L337Logic(" ");
+
+            Assert.AreEqual(" ", actual);
+        }
     }
 }
