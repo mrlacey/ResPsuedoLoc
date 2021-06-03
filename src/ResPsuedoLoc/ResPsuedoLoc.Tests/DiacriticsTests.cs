@@ -289,5 +289,53 @@ namespace ResPsuedoLoc.Tests
 
             Assert.AreEqual("a\u0347", actual);
         }
+
+        [TestMethod]
+        public void CanHandleNull()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic(null, ToggleMode.Apply);
+
+            Assert.AreEqual(null, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleEmptyString()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic(string.Empty, ToggleMode.Apply);
+
+            Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhiteSpace()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic(" ", ToggleMode.Apply);
+
+            Assert.AreEqual(" ", actual);
+        }
+
+        [TestMethod]
+        public void CanHandleToggleModeNotSet()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("Something", ToggleMode.NotSet);
+
+            Assert.AreEqual("Something", actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhenFirstCombiningDiacriticIsNotOneUsedHere()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("1\u033E\u0347");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void CanHandleWhenSecondCombiningDiacriticIsNotOneUsedHere()
+        {
+            var actual = DiacriticsCommand.HasAddedDiacritics("1\u033F\u033E");
+
+            Assert.IsFalse(actual);
+        }
     }
 }

@@ -120,6 +120,11 @@ namespace ResPsuedoLoc.Commands
 
         public static string AddPadding(string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return input;
+            }
+
             var surrounded = SurroundCommand.IsSurrounded(input);
 
             var stringToAdjust = input;
