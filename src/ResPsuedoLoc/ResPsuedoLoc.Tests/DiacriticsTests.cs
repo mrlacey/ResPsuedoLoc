@@ -337,5 +337,79 @@ namespace ResPsuedoLoc.Tests
 
             Assert.IsFalse(actual);
         }
+
+        [TestMethod]
+        public void RemoveWhenNotAllLettersHaveDiacticsAdded()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("s͇̿o͇̿m͇̿e͇̿ t͇̿e͇̿x͇̿t͇̿ X m͇̿o͇̿r͇̿e͇̿ t͇̿e͇̿x͇̿t͇̿", ToggleMode.Reverse);
+
+            Assert.AreEqual("some text X more text", actual);
+        }
+
+        [TestMethod]
+        public void RemoveWhenSomeLettersHaveOtherDiacriticsAdded()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("s͇̿o͇̿m͇̿e͇̿ X a\u0306", ToggleMode.Reverse);
+
+            Assert.AreEqual("some X a\u0306", actual);
+        }
+
+        [TestMethod]
+        public void RemoveWhenSomeLettersHaveMultipleOtherDiacriticsAdded()
+        {
+            var actual = DiacriticsCommand.DiacriticsLogic("s͇̿o͇̿m͇̿e͇̿ X a\u0306\u033E", ToggleMode.Reverse);
+
+            Assert.AreEqual("some X a\u0306\u033E", actual);
+        }
+
+        [TestMethod]
+        public void HandleRemovingDiacriticsWhenAddedAreMixedWithOthers_FirstAdditionsInvalid()
+        {
+            // a - extra in third addition
+            // b - extra in second addition
+            // c - extra in first position - should have removals
+            // d - 2 extras in first & second position - should have removals
+            // e - no extras - all should be removed
+            var actual = DiacriticsCommand.RemoveDiacritics(
+                "a\u0306\u032E\u033Eb\u0306\u033E\u032Ec\u033E\u0306\u032Ed\u033E\u033F\u0306\u032Ee\u0306\u032E");
+
+            // The above would fail if calling DiacriticsLogic with ToggleMode.Reverse as the
+            // combining characters added to the first letter 'a' don't look right.
+            // See next test for variation on this theme.
+            Assert.AreEqual(
+                "a\u0306\u032E\u033Eb\u0306\u033E\u032Ec\u033Ed\u033E\u033Fe", actual);
+        }
+
+        [TestMethod]
+        public void HandleRemovingDiacriticsWhenAddedAreMixedWithOthers_FirstAdditionsInvalid_SoNoAdditionDetectedAndNothingRemoved()
+        {
+            // Note. The scenario tested here should never happen in reality as it's using the wrong toggle mode for the input string.
+            //// a - extra in third addition
+            //// b - extra in second addition
+            //// c - extra in first position - should have removals
+            //// d - 2 extras in first & second position - should have removals
+            //// e - no extras - all should be removed
+            var testStr = "a\u0306\u032E\u033Eb\u0306\u033E\u032Ec\u033E\u0306\u032Ed\u033E\u033F\u0306\u032Ee\u0306\u032E";
+
+            var actual = DiacriticsCommand.DiacriticsLogic(testStr, ToggleMode.Reverse);
+
+            Assert.AreEqual(testStr, actual);
+        }
+
+        [TestMethod]
+        public void HandleRemovingDiacriticsWhenAddedAreMixedWithOthers_FirstAdditionsValid_SoHaveRemovals()
+        {
+            //// z - no extras
+            //// a - extra in third addition
+            //// b - extra in second addition
+            //// c - extra in first position - should have removals
+            //// d - 2 extras in first & second position - should have removals
+            //// e - no extras - all should be removed
+            var testStr = "z\u0306\u032Ea\u0306\u032E\u033Eb\u0306\u033E\u032Ec\u033E\u0306\u032Ed\u033E\u033F\u0306\u032Ee\u0306\u032E";
+
+            var actual = DiacriticsCommand.DiacriticsLogic(testStr, ToggleMode.Reverse);
+
+            Assert.AreEqual("za\u0306\u032E\u033Eb\u0306\u033E\u032Ec\u033Ed\u033E\u033Fe", actual);
+        }
     }
 }

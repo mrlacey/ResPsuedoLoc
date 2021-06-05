@@ -105,20 +105,30 @@ namespace ResPsuedoLoc.Commands
                     // Find the first text element with added diacritics
                     if (textElements[i].Length > 2)
                     {
-                        // Check that the same above and below diacritics are added as we would
-                        // Don't check for the expected diacritics based on string length as combinations of actions can change this
-                        var topAddition = textElements[i][textElements[i].Length - 2];
-                        var bottomAddition = textElements[i][textElements[i].Length - 1];
-
-                        var topIndex = TopOptions.ToList().IndexOf(topAddition);
-                        var bottomIndex = BottomOptions.ToList().IndexOf(bottomAddition);
-
-                        return topIndex >= 0 && topIndex == bottomIndex;
+                        return HasSubstringGotAddedDiacritics(textElements[i]);
                     }
                 }
             }
 
             return false;
+        }
+
+        public static bool HasSubstringGotAddedDiacritics(string graphemeCluster)
+        {
+            if (graphemeCluster.Length <= 2)
+            {
+                return false;
+            }
+
+            // Check that the same above and below diacritics are added as we would
+            // Don't check for the expected diacritics based on string length as combinations of actions can change this
+            var topAddition = graphemeCluster[graphemeCluster.Length - 2];
+            var bottomAddition = graphemeCluster[graphemeCluster.Length - 1];
+
+            var topIndex = TopOptions.ToList().IndexOf(topAddition);
+            var bottomIndex = BottomOptions.ToList().IndexOf(bottomAddition);
+
+            return topIndex >= 0 && topIndex == bottomIndex;
         }
 
         public static string AddDiacritics(string input)
@@ -187,7 +197,14 @@ namespace ResPsuedoLoc.Commands
                 }
                 else
                 {
-                    result.Append(letter.Substring(0, letter.Length - 2));
+                    if (HasSubstringGotAddedDiacritics(letter))
+                    {
+                        result.Append(letter.Substring(0, letter.Length - 2));
+                    }
+                    else
+                    {
+                        result.Append(letter);
+                    }
                 }
             }
 
