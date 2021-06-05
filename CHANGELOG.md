@@ -11,6 +11,10 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
+## 3.3
+
+- [x] Fix bug when toggling added diacritic characters.
+
 ## 3.2
 
 - [x] Improve handling of strings that contain non-alphanumeric characters.
