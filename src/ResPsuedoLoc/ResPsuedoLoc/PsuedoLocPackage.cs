@@ -66,6 +66,8 @@ namespace ResPsuedoLoc
             await XxxxxCommand.InitializeAsync(this);
             await L337Command.InitializeAsync(this);
             await AlternateCaseCommand.InitializeAsync(this);
+
+            await SponsorRequestHelper.CheckIfNeedToShowAsync();
         }
     }
 }
