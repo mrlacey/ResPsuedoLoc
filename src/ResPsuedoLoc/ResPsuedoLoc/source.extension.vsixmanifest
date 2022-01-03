@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="ResPsuedoLoc.fb9c5e68-fb3b-44f4-9412-717109dc3ba9" Version="3.3" Language="en-US" Publisher="Matt Lacey" />
-        <DisplayName>Resource Pseudo Localizer</DisplayName>
+        <Identity Id="ResPsuedoLoc2019.fb9c5e68-fb3b-44f4-9412-717109dc3ba9" Version="3.4" Language="en-US" Publisher="Matt Lacey" />
+        <DisplayName>Resource Pseudo Localizer (2019)</DisplayName>
         <Description xml:space="preserve">Quickly and easily convert the values in RESX and RESW files to their pseudo localized versions to help detect any text that doesn't come from a resource file.</Description>
         <MoreInfo>https://github.com/mrlacey/ResPsuedoLoc</MoreInfo>
         <License>Resources\LICENSE</License>
@@ -14,7 +14,6 @@
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 17.0)" />
     </Installation>
     <Dependencies>
-        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
     </Dependencies>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,17.0)" DisplayName="Visual Studio core editor" />
