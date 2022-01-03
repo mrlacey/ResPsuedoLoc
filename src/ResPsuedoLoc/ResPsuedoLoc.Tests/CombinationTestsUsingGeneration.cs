@@ -15,7 +15,7 @@ namespace ResPsuedoLoc.Tests
         public static string[] GetAllCommands()
         {
             return new[]
-              {
+            {
                 nameof(DiacriticsCommand),
                 nameof(DoubleCommand),
                 nameof(InvertCaseCommand),

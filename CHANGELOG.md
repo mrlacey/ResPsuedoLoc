@@ -11,6 +11,10 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
+## 3.4
+
+- [x] Added Visual Studio 2022 support
+
 ## 3.3
 
 - [x] Fix bug when toggling added diacritic characters.

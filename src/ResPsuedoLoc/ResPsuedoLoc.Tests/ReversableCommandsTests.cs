@@ -158,7 +158,7 @@ namespace ResPsuedoLoc.Tests
             {
                 "h\u0346\u033Aa\u0346\u033As\u0346\u033A",
                 "does not have",
-                "A\u0309\u0321l\u0309\u0321s\u0309\u0321o\u0309\u0321 h\u0309\u0321a\u0309\u0321s\u0309\u0321"
+                "A\u0309\u0321l\u0309\u0321s\u0309\u0321o\u0309\u0321 h\u0309\u0321a\u0309\u0321s\u0309\u0321",
             };
 
             var sut = DiacriticsCommand.CreateForTesting();
@@ -177,7 +177,7 @@ namespace ResPsuedoLoc.Tests
             {
                 "does not have",
                 "h\u0346\u033Aa\u0346\u033As\u0346\u033A",
-                "also does not have"
+                "also does not have",
             };
 
             var sut = DiacriticsCommand.CreateForTesting();
@@ -188,7 +188,7 @@ namespace ResPsuedoLoc.Tests
             {
                 "d\u030A\u0325o\u030A\u0325e\u030A\u0325s\u030A\u0325 n\u030A\u0325o\u030A\u0325t\u030A\u0325 h\u030A\u0325a\u030A\u0325v\u030A\u0325e\u030A\u0325",
                 "h\u0346\u033Aa\u0346\u033As\u0346\u033A",
-                "a\u0308\u0324l\u0308\u0324s\u0308\u0324o\u0308\u0324 d\u0308\u0324o\u0308\u0324e\u0308\u0324s\u0308\u0324 n\u0308\u0324o\u0308\u0324t\u0308\u0324 h\u0308\u0324a\u0308\u0324v\u0308\u0324e\u0308\u0324"
+                "a\u0308\u0324l\u0308\u0324s\u0308\u0324o\u0308\u0324 d\u0308\u0324o\u0308\u0324e\u0308\u0324s\u0308\u0324 n\u0308\u0324o\u0308\u0324t\u0308\u0324 h\u0308\u0324a\u0308\u0324v\u0308\u0324e\u0308\u0324",
             };
 
             Assert.That.StringListsAreEqual(expected, actual);
@@ -201,7 +201,7 @@ namespace ResPsuedoLoc.Tests
             {
                 "[! h\u0346\u033Aa\u0346\u033As\u0346\u033A !]",
                 "[! does not have !]",
-                "[! A\u0309\u0321l\u0309\u0321s\u0309\u0321o\u0309\u0321 h\u0309\u0321a\u0309\u0321s\u0309\u0321 !]"
+                "[! A\u0309\u0321l\u0309\u0321s\u0309\u0321o\u0309\u0321 h\u0309\u0321a\u0309\u0321s\u0309\u0321 !]",
             };
 
             var sut = DiacriticsCommand.CreateForTesting();
@@ -212,7 +212,7 @@ namespace ResPsuedoLoc.Tests
             {
                 "[! has !]",
                 "[! does not have !]",
-                "[! Also has !]"
+                "[! Also has !]",
             };
 
             Assert.That.StringListsAreEqual(expected, actual);
@@ -225,7 +225,7 @@ namespace ResPsuedoLoc.Tests
             {
                 "[! does not have !]",
                 "[! h\u0346\u033Aa\u0346\u033As\u0346\u033A !]",
-                "[! also does not have !]"
+                "[! also does not have !]",
             };
 
             var sut = DiacriticsCommand.CreateForTesting();
@@ -236,7 +236,7 @@ namespace ResPsuedoLoc.Tests
             {
                 "[! d\u030A\u0325o\u030A\u0325e\u030A\u0325s\u030A\u0325 n\u030A\u0325o\u030A\u0325t\u030A\u0325 h\u030A\u0325a\u030A\u0325v\u030A\u0325e\u030A\u0325 !]",
                 "[! h\u0346\u033Aa\u0346\u033As\u0346\u033A !]",
-                "[! a\u0308\u0324l\u0308\u0324s\u0308\u0324o\u0308\u0324 d\u0308\u0324o\u0308\u0324e\u0308\u0324s\u0308\u0324 n\u0308\u0324o\u0308\u0324t\u0308\u0324 h\u0308\u0324a\u0308\u0324v\u0308\u0324e\u0308\u0324 !]"
+                "[! a\u0308\u0324l\u0308\u0324s\u0308\u0324o\u0308\u0324 d\u0308\u0324o\u0308\u0324e\u0308\u0324s\u0308\u0324 n\u0308\u0324o\u0308\u0324t\u0308\u0324 h\u0308\u0324a\u0308\u0324v\u0308\u0324e\u0308\u0324 !]",
             };
 
             Assert.That.StringListsAreEqual(expected, actual);
