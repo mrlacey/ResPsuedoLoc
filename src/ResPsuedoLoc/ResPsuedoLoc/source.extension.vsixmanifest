@@ -6,7 +6,7 @@
         <Description xml:space="preserve">Quickly and easily convert the values in RESX and RESW files to their pseudo localized versions to help detect any text that doesn't come from a resource file.</Description>
         <MoreInfo>https://github.com/mrlacey/ResPsuedoLoc</MoreInfo>
         <License>Resources\LICENSE</License>
-        <ReleaseNotes>https://github.com/mrlacey/ResPsuedoLoc/blob/master/CHANGELOG.md</ReleaseNotes>
+        <ReleaseNotes>https://github.com/mrlacey/ResPsuedoLoc/blob/main/CHANGELOG.md</ReleaseNotes>
         <Icon>Resources\ResPsuedoLoc-Logo.png</Icon>
         <Tags>RESX, RESW, resources, localization, i18n, testing</Tags>
     </Metadata>
