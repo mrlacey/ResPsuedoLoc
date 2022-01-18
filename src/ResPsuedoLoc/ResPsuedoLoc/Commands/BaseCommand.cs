@@ -28,14 +28,6 @@ namespace ResPsuedoLoc.Commands
             // For testing use only
         }
 
-        private Microsoft.VisualStudio.Shell.IAsyncServiceProvider ServiceProvider
-        {
-            get
-            {
-                return this.package;
-            }
-        }
-
         public void ForEachStringResourceEntry(Func<string, string> doThis)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -46,8 +38,8 @@ namespace ResPsuedoLoc.Commands
             monitorSelection.GetCurrentSelection(
                                                  out IntPtr hierarchyPointer,
                                                  out uint itemId,
-                                                 out IVsMultiItemSelect multiItemSelect,
-                                                 out IntPtr selectionContainerPointer);
+                                                 out IVsMultiItemSelect _,
+                                                 out IntPtr _);
 
             IVsHierarchy selectedHierarchy = Marshal.GetTypedObjectForIUnknown(
                                                  hierarchyPointer,
@@ -56,9 +48,16 @@ namespace ResPsuedoLoc.Commands
             ((IVsProject)selectedHierarchy).GetMkDocument(itemId, out string itemFullPath);
 
             this.CreateBackupFileIfNoneExists(itemFullPath);
+            System.Text.Encoding encoding;
 
-            var xdoc = new XmlDocument();
-            xdoc.Load(itemFullPath);
+            var xdoc = new XmlDocument { PreserveWhitespace = true };
+
+            using (var reader = new StreamReader(itemFullPath, detectEncodingFromByteOrderMarks: true))
+            {
+                encoding = reader.CurrentEncoding;
+
+                xdoc.Load(reader);
+            }
 
             foreach (XmlElement element in xdoc.GetElementsByTagName("data"))
             {
@@ -79,7 +78,12 @@ namespace ResPsuedoLoc.Commands
                 }
             }
 
-            xdoc.Save(itemFullPath);
+            var xmlSettings = new XmlWriterSettings { Encoding = encoding };
+
+            using (var writer = XmlWriter.Create(itemFullPath, xmlSettings))
+            {
+                xdoc.Save(writer);
+            }
         }
 
         protected void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
@@ -134,10 +138,8 @@ namespace ResPsuedoLoc.Commands
             hierarchy = null;
             itemId = VSConstants.VSITEMID_NIL;
 
-            var solution = Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(SVsSolution)) as IVsSolution;
-#pragma warning disable SA1119 // Statement must not use unnecessary parenthesis
-            if (!(Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(SVsShellMonitorSelection)) is IVsMonitorSelection monitorSelection) || solution == null)
-#pragma warning restore SA1119 // Statement must not use unnecessary parenthesis
+            if (!(Package.GetGlobalService(typeof(SVsShellMonitorSelection)) is IVsMonitorSelection monitorSelection)
+             || !(Package.GetGlobalService(typeof(SVsSolution)) is IVsSolution solution))
             {
                 return false;
             }

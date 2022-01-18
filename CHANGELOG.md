@@ -11,6 +11,10 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
+## 3.5
+
+- [x] Ensure file encodings are preserved when changing resource files.
+
 ## 3.4
 
 - [x] Added Visual Studio 2022 support
