@@ -3,7 +3,6 @@
 // </copyright>
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.VisualStudio.Shell;
@@ -15,7 +14,7 @@ namespace ResPsuedoLoc
     [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasMultipleProjects, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideAutoLoad(Microsoft.VisualStudio.Shell.Interop.UIContextGuids.SolutionHasSingleProject, PackageAutoLoadFlags.BackgroundLoad)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [InstalledProductRegistration("#110", "#112", "3.5", IconResourceID = 400)] // Info on this package for Help/About
+    [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideOptionPage(typeof(OptionsGrid), "Resource Pseudo-Localizer", "General", 0, 0, true)]
     [Guid(PsuedoLocPackage.PackageGuidString)]
