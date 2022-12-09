@@ -11,7 +11,7 @@ namespace ResPsuedoLoc
         public const string Name = "Resource Pseudo Localizer";
         public const string Description = @"Quickly and easily convert the values in RESX and RESW files to their pseudo localized versions to help detect any text that doesn't come from a resource file.";
         public const string Language = "en-US";
-        public const string Version = "3.5.1";
+        public const string Version = "3.5.2";
         public const string Author = "Matt Lacey";
         public const string Tags = "RESX, RESW, resources, localization, i18n, testing";
     }
