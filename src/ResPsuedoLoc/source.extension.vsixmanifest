@@ -5,16 +5,16 @@
         <DisplayName>Resource Pseudo Localizer</DisplayName>
         <Description xml:space="preserve">Quickly and easily convert the values in RESX and RESW files to their pseudo localized versions to help detect any text that doesn't come from a resource file.</Description>
         <MoreInfo>https://github.com/mrlacey/ResPsuedoLoc</MoreInfo>
-        <License>Resources\LICENSE</License>
+        <License>Resources\LICENSE.txt</License>
         <ReleaseNotes>https://github.com/mrlacey/ResPsuedoLoc/blob/main/CHANGELOG.md</ReleaseNotes>
         <Icon>Resources\ResPsuedoLoc-Logo.png</Icon>
         <Tags>RESX, RESW, resources, localization, i18n, testing</Tags>
     </Metadata>
     <Installation>
-        <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Community">
+        <InstallationTarget Version="[17.6,18.0)" Id="Microsoft.VisualStudio.Community">
             <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
-        <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Community">
+        <InstallationTarget Version="[17.6,18.0)" Id="Microsoft.VisualStudio.Community">
             <ProductArchitecture>arm64</ProductArchitecture>
         </InstallationTarget>
     </Installation>
