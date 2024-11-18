@@ -11,13 +11,7 @@ namespace ResPsuedoLoc
         // This might be the code you see, but it's not what I compile into the extensions when built ;)
         public static async Task<bool> IsSponsorAsync()
         {
-            // return await Task.FromResult(false);
-            var sponsorFilePath =
-            System.IO.Path.Combine(
-                System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData),
-                "i-sponsor-mrlacey.txt");
-
-            return await Task.FromResult(System.IO.File.Exists(sponsorFilePath));
+            return await Task.FromResult(false);
         }
     }
 }
